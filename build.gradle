@@ -1,0 +1,83 @@
+group 'org.openrndr.examples'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.3.10'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        mavenLocal()
+        maven { url 'https://jitpack.io' }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'application'
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+sourceCompatibility = 1.8
+project.ext.openrndrVersion = "0.3.29"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven {
+        url = "https://dl.bintray.com/openrndr/openrndr/"
+    }
+    maven { url 'https://jitpack.io' }
+}
+
+switch (org.gradle.internal.os.OperatingSystem.current()) {
+    case org.gradle.internal.os.OperatingSystem.WINDOWS:
+        project.ext.openrndrOS = "windows"
+        break
+    case org.gradle.internal.os.OperatingSystem.LINUX:
+        project.ext.openrndrOS = "linux-x64"
+        break
+    case org.gradle.internal.os.OperatingSystem.MAC_OS:
+        project.ext.openrndrOS = "macos"
+        break
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    runtime "org.openrndr:openrndr-gl3:$openrndrVersion"
+    runtime "org.openrndr:openrndr-gl3-natives-$openrndrOS:$openrndrVersion"
+    compile "org.openrndr:openrndr-core:$openrndrVersion"
+    compile "org.openrndr:openrndr-svg:$openrndrVersion"
+    compile "org.openrndr:openrndr-animatable:$openrndrVersion"
+    compile "org.openrndr:openrndr-extensions:$openrndrVersion"
+    compile "org.openrndr:openrndr-filter:$openrndrVersion"
+    compile "org.openrndr:openrndr-ffmpeg:$openrndrVersion"
+}
+
+mainClassName = "TemplateProgramKt"
+if (!System.properties['os.name'].toLowerCase().contains('windows')) {
+    applicationDefaultJvmArgs = ["-XstartOnFirstThread"]
+}
+
+
+ext.mainClassName = mainClassName
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+    doFirst {
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+        from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
+    }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA', '**/module-info*'
+    archiveName 'myjar.jar'
+}
+
