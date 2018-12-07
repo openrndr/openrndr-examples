@@ -36,7 +36,7 @@ fun main(args: Array<String>) {
             
     
                 val points1 = Circle(585.0, height / 2.0, 90.0).contour.equidistantPositions((Math.cos(seconds) * 10.0 + 30.0).toInt())
-                drawer.circles(points1, 10.00)
+                drawer.circles(points1, 10.0)
             }
         }
     }

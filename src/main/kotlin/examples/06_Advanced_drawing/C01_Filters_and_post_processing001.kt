@@ -1,0 +1,87 @@
+
+package examples.`06_Advanced_drawing`
+
+import org.openrndr.application
+import org.openrndr.color.ColorRGBa
+import org.openrndr.draw.Filter
+import org.openrndr.draw.colorBuffer
+import org.openrndr.draw.isolatedWithTarget
+import org.openrndr.draw.renderTarget
+import org.openrndr.ffmpeg.ScreenRecorder
+import org.openrndr.filter.blur.BoxBlur
+import org.openrndr.filter.filterShaderFromCode
+
+fun main(args: Array<String>) {
+    application {
+        val noiseShader = """
+            #version 330
+            // -- part of the filter interface, every filter has these
+            in vec2 v_texCoord0;
+            uniform sampler2D tex0;
+            out vec4 o_color;
+    
+            // -- user parameters
+            uniform float gain;
+            uniform float time;
+    
+            #define HASHSCALE 443.8975
+            vec2 hash22(vec2 p) {
+                vec3 p3 = fract(vec3(p.xyx) * HASHSCALE);
+                p3 += dot(p3, p3.yzx+19.19);
+                return fract(vec2((p3.x + p3.y)*p3.z, (p3.x+p3.z)*p3.y));
+            }
+    
+            void main() {
+                float n = hash22(v_texCoord0+vec2(time)).x;
+                // here we read from the input image and add noise
+                vec4 color = texture(tex0, v_texCoord0) + vec4(vec3(n), 0.0) * gain;
+                o_color = color;
+            }
+            """
+    
+        class Noise : Filter(filterShaderFromCode(noiseShader)) {
+            // -- note the 'by parameters' here, this is what wires the fields up to the uniforms
+            var gain: Double by parameters
+            var time: Double by parameters
+            init {
+                gain = 1.0
+                time = 0.0
+            }
+        }
+        program {
+            configure {
+                width = 770
+                height = 578
+            }
+            // -- create the noise filter
+            val noise = Noise()
+            val offscreen = renderTarget(width, height) {
+                colorBuffer()
+                depthBuffer()
+            }
+            extend(ScreenRecorder()) {
+                outputFile = "media/filters-002.mp4"
+                maximumDuration = 1.00
+                quitAfterMaximum = true
+                frameRate = 30
+            }
+            extend {
+                // -- draw to offscreen buffer
+                drawer.isolatedWithTarget(offscreen) {
+                    background(ColorRGBa.BLACK)
+                    fill = ColorRGBa.PINK
+                    stroke = null
+                    circle(Math.cos(seconds) * 100.0 + width / 2, Math.sin(seconds) * 100.0 + height / 2.0, 100.0 + 100.0 * Math.cos(seconds * 2.0))
+                }
+                // apply the noise on and to offscreen.colorBuffer(0),
+                // this only works for filters that only read from
+                // the current fragment.
+                noise.time = seconds
+                noise.gain = Math.cos(seconds) * 0.5 + 0.5
+                noise.apply(offscreen.colorBuffer(0), offscreen.colorBuffer(0))
+                drawer.image(offscreen.colorBuffer(0))
+            }
+        }
+    }
+}
+    
