@@ -15,27 +15,32 @@ fun main(args: Array<String>) {
     application {
         configure {
             width = 770
-            height = 578
+            height = 45
         }
         program {
             extend(SingleScreenshot()) {
-                outputFile = "media/ui-001.png"
+                outputFile = "media/ui-009.png"
             }
-        
-            var color = ColorRGBa.GRAY.shade(0.250)
             extend(ControlManager()) {
                 layout {
-                    button {
-                        label = "click me"
-                        // -- listen to the click event
-                        clicked {
-                            color = ColorRGBa(Math.random(), Math.random(), Math.random())
+                    dropdownButton {
+                        label = "Option"
+                    
+                        item {
+                            label = "Item 1"
+                            events.picked.subscribe {
+                                println("you picked item 1")
+                            }
+                        }
+                    
+                        item {
+                            label = "Item 2"
+                            events.picked.subscribe {
+                                println("you picked item 2")
+                            }
                         }
                     }
                 }
-            }
-            extend {
-                drawer.background(color)
             }
         }
     }

@@ -15,27 +15,23 @@ fun main(args: Array<String>) {
     application {
         configure {
             width = 770
-            height = 578
+            height = 45
         }
         program {
             extend(SingleScreenshot()) {
-                outputFile = "media/ui-001.png"
+                outputFile = "media/ui-006.png"
             }
-        
-            var color = ColorRGBa.GRAY.shade(0.250)
             extend(ControlManager()) {
                 layout {
                     button {
-                        label = "click me"
-                        // -- listen to the click event
-                        clicked {
-                            color = ColorRGBa(Math.random(), Math.random(), Math.random())
+                        label = "Click me "
+                        events.clicked.subscribe {// -- do something with the clicked event
                         }
                     }
                 }
             }
             extend {
-                drawer.background(color)
+                drawer.background(ColorRGBa.GRAY.shade(0.250))
             }
         }
     }

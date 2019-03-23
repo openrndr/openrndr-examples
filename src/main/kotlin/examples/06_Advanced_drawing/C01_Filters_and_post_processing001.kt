@@ -3,13 +3,10 @@ package examples.`06_Advanced_drawing`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.draw.Filter
-import org.openrndr.draw.colorBuffer
-import org.openrndr.draw.isolatedWithTarget
-import org.openrndr.draw.renderTarget
+import org.openrndr.draw.*
+import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.filter.blur.BoxBlur
-import org.openrndr.filter.filterShaderFromCode
 
 fun main(args: Array<String>) {
     application {
@@ -59,11 +56,8 @@ fun main(args: Array<String>) {
                 colorBuffer()
                 depthBuffer()
             }
-            extend(ScreenRecorder()) {
-                outputFile = "media/filters-002.mp4"
-                maximumDuration = 1.00
-                quitAfterMaximum = true
-                frameRate = 30
+            extend(SingleScreenshot()) {
+                outputFile = "media/filters-002.png"
             }
             extend {
                 // -- draw to offscreen buffer
@@ -71,14 +65,15 @@ fun main(args: Array<String>) {
                     background(ColorRGBa.BLACK)
                     fill = ColorRGBa.PINK
                     stroke = null
-                    circle(Math.cos(seconds) * 100.0 + width / 2, Math.sin(seconds) * 100.0 + height / 2.0, 100.0 + 100.0 * Math.cos(seconds * 2.0))
+                    circle(Math.cos(seconds) * 100.0 + width / 2, Math.sin(seconds) * 100.0 + height / 2.0, 100.0 + 100.0 * Math.cos(seconds * 2.00))
                 }
                 // apply the noise on and to offscreen.colorBuffer(0),
                 // this only works for filters that only read from
                 // the current fragment.
                 noise.time = seconds
-                noise.gain = Math.cos(seconds) * 0.5 + 0.5
+                noise.gain = 1.0
                 noise.apply(offscreen.colorBuffer(0), offscreen.colorBuffer(0))
+            
                 drawer.image(offscreen.colorBuffer(0))
             }
         }

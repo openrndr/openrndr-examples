@@ -19,23 +19,20 @@ fun main(args: Array<String>) {
         }
         program {
             extend(SingleScreenshot()) {
-                outputFile = "media/ui-001.png"
+                outputFile = "media/ui-002.png"
             }
         
-            var color = ColorRGBa.GRAY.shade(0.250)
             extend(ControlManager()) {
+                styleSheet(has type "button") {
+                    background = Color.RGBa(ColorRGBa.PINK)
+                    color = Color.RGBa(ColorRGBa.BLACK)
+                }
+            
                 layout {
                     button {
                         label = "click me"
-                        // -- listen to the click event
-                        clicked {
-                            color = ColorRGBa(Math.random(), Math.random(), Math.random())
-                        }
                     }
                 }
-            }
-            extend {
-                drawer.background(color)
             }
         }
     }

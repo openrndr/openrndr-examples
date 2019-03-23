@@ -3,13 +3,10 @@ package examples.`06_Advanced_drawing`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.draw.Filter
-import org.openrndr.draw.colorBuffer
-import org.openrndr.draw.isolatedWithTarget
-import org.openrndr.draw.renderTarget
+import org.openrndr.draw.*
+import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.filter.blur.BoxBlur
-import org.openrndr.filter.filterShaderFromCode
 
 fun main(args: Array<String>) {
     application {
