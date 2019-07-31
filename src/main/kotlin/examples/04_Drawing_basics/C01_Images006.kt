@@ -17,12 +17,12 @@ fun main(args: Array<String>) {
         program {
             val image = loadImage("data/cheeta.jpg")
             extend(SingleScreenshot()) {
-                outputFile = "media/image-006.png"
+                outputFile = "media/image-007.png"
             }
         
             extend {
-                // -- the factors below determine the RGB mixing factors
-                drawer.drawStyle.colorMatrix = grayscale(1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0)
+                // -- here we concatenate the transforms using the multiplication operator.
+                drawer.drawStyle.colorMatrix = tint(ColorRGBa.PINK) * grayscale()
                 drawer.image(image)
             }
         }
