@@ -6,10 +6,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
+import org.openrndr.draw.*
 import org.openrndr.draw.colorBuffer
-import org.openrndr.draw.drawThread
-import org.openrndr.draw.launch
-import org.openrndr.draw.renderTarget
+
 import org.openrndr.internal.finish
 import org.openrndr.launch
 import java.nio.ByteBuffer
