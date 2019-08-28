@@ -45,11 +45,11 @@ fun main(args: Array<String>) {
                 time = 0.0
             }
         }
+        configure {
+            width = 770
+            height = 578
+        }
         program {
-            configure {
-                width = 770
-                height = 578
-            }
             // -- create the noise filter
             val noise = Noise()
             val offscreen = renderTarget(width, height) {
