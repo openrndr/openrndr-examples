@@ -13,16 +13,13 @@ import org.openrndr.panel.styleSheet
 
 fun main(args: Array<String>) {
     application {
-        configure {
-            width = 770
-            height = 45
-        }
         program {
             extend(SingleScreenshot()) {
                 outputFile = "media/ui-009.png"
             }
             extend(ControlManager()) {
                 layout {
+            
                     dropdownButton {
                         label = "Option"
                     

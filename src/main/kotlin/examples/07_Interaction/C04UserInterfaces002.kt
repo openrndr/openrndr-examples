@@ -18,9 +18,6 @@ fun main(args: Array<String>) {
             height = 45
         }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/ui-006.png"
-            }
             extend(ControlManager()) {
                 layout {
                     button {

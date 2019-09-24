@@ -23,6 +23,7 @@ fun main(args: Array<String>) {
             }
             extend(ControlManager()) {
                 layout {
+            
                     slider {
                         label = "Slide me"
                         value = 0.50
