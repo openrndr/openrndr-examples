@@ -9,14 +9,7 @@ import org.openrndr.ffmpeg.ScreenRecorder
 
 fun main(args: Array<String>) {
     application {
-        configure {
-            width = 770
-            height = 578
-        }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/shadestyles-002.png"
-            }
             extend {
                 drawer.shadeStyle = shadeStyle {
                     fragmentTransform = """

@@ -16,9 +16,6 @@ fun main(args: Array<String>) {
     application {
         program {
             val image = loadImage("data/cheeta.jpg")
-            extend(SingleScreenshot()) {
-                outputFile = "media/image-002.png"
-            }
         
             extend {
                 val source = Rectangle(0.0, 0.0, 320.0, 240.0)

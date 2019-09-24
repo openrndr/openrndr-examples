@@ -25,12 +25,6 @@ fun main(args: Array<String>) {
         
             // -- create colorbuffer to hold blur results
             val blurred = colorBuffer(width, height)
-            extend(ScreenRecorder()) {
-                frameRate = 60
-                maximumDuration = 10.00
-                quitAfterMaximum = true
-                outputFile = "media/filters-001.mp4"
-            }
         
             extend {
                 // -- draw to offscreen buffer

@@ -7,14 +7,7 @@ import org.openrndr.extensions.SingleScreenshot
 
 fun main(args: Array<String>) {
     application {
-        configure {
-            width = 770
-            height = 196
-        }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/color-001.png"
-            }
             extend {
                 drawer.stroke = null
                 val baseColor = ColorRGBa.PINK

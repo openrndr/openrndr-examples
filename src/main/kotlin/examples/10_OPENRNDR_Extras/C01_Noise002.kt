@@ -19,14 +19,7 @@ import kotlin.math.abs
 
 fun main(args: Array<String>) {
     application {
-        configure {
-            width = 770
-            height = 578
-        }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/orx-noise-003.png"
-            }
             extend {
                 drawer.fill = ColorRGBa.PINK
                 drawer.stroke = null

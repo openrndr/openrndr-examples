@@ -10,15 +10,7 @@ import org.openrndr.math.transforms.transform
 
 fun main(args: Array<String>) {
     application {
-        configure {
-            width = 770
-            height = 578
-        }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/custom-rendering-001.png"
-                multisample = BufferMultisample.SampleCount(8)
-            }
             val geometry = vertexBuffer(vertexFormat {
                 position(3)
             }, 3 * 100)

@@ -16,9 +16,6 @@ fun main(args: Array<String>) {
     application {
         program {
             val image = loadImage("data/cheeta.jpg")
-            extend(SingleScreenshot()) {
-                outputFile = "media/image-001.png"
-            }
         
             extend {
                 drawer.image(image)

@@ -14,9 +14,6 @@ fun main(args: Array<String>) {
         configure {
         }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/rectangle-001.png"
-            }
         
             extend {
                 drawer.background(ColorRGBa.PINK)

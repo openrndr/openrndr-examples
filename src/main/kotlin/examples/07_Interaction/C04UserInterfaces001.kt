@@ -13,14 +13,7 @@ import org.openrndr.panel.styleSheet
 
 fun main(args: Array<String>) {
     application {
-        configure {
-            width = 770
-            height = 578
-        }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/ui-002.png"
-            }
         
             extend(ControlManager()) {
                 styleSheet(has type "button") {

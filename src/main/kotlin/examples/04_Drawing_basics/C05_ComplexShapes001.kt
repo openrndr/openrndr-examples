@@ -18,9 +18,6 @@ fun main(args: Array<String>) {
             height = 578
         }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/shapes-002.png"
-            }
             extend {
                 val s = shape {
                     contour {

@@ -13,14 +13,7 @@ import org.openrndr.panel.styleSheet
 
 fun main(args: Array<String>) {
     application {
-        configure {
-            width = 770
-            height = 578
-        }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/ui-001.png"
-            }
         
             var color = ColorRGBa.GRAY.shade(0.250)
             extend(ControlManager()) {

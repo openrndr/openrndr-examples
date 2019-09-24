@@ -17,9 +17,6 @@ fun main(args: Array<String>) {
             height = 578
         }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/text-002.png"
-            }
             val font = loadFont("file:data/IBMPlexMono-Bold.ttf", 24.0)
             extend {
                 drawer.background(ColorRGBa.PINK)

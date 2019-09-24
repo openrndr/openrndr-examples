@@ -18,9 +18,6 @@ fun main(args: Array<String>) {
             height = 578
         }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/shapes-003.png"
-            }
             extend {
                 drawer.fill = ColorRGBa.PINK
                 drawer.stroke = null

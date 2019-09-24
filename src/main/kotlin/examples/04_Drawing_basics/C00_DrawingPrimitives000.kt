@@ -14,9 +14,6 @@ fun main(args: Array<String>) {
         configure {
         }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/circle-001.png"
-            }
         
             extend {
         

@@ -13,9 +13,6 @@ import org.openrndr.text.Writer
 fun main(args: Array<String>) {
     application {
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/text-001.png"
-            }
             val font = loadFont("data/IBMPlexMono-Bold.ttf", 48.0)
             extend {
                 drawer.background(ColorRGBa.PINK)

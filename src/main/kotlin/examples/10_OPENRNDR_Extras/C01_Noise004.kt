@@ -19,16 +19,7 @@ import kotlin.math.abs
 
 fun main(args: Array<String>) {
     application {
-        configure {
-            width = 770
-            height = 578
-        }
         program {
-            extend(ScreenRecorder()) {
-                outputFile = "media/orx-noise-005.mp4"
-                quitAfterMaximum = true
-                maximumDuration = 9.0
-            }
             extend {
                 drawer.fill = ColorRGBa.PINK
                 drawer.stroke = null

@@ -18,9 +18,6 @@ fun main(args: Array<String>) {
             height = 578
         }
         program {
-            extend(SingleScreenshot()) {
-                outputFile = "media/shapes-001.png"
-            }
             extend {
                 val c = contour {
                     moveTo(Vector2(width / 2.0 - 150.0, height / 2.0 - 150.00))

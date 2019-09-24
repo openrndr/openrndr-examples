@@ -13,13 +13,6 @@ fun main(args: Array<String>) {
             height = 578
         }
         program {
-            extend(ScreenRecorder()) {
-                multisample = BufferMultisample.SampleCount(8)
-                frameRate = 60
-                quitAfterMaximum = true
-                maximumDuration = 7.7
-                outputFile = "media/transformations-005.mp4"
-            }
             extend {
                 drawer.fill = ColorRGBa.PINK
                 drawer.stroke = null

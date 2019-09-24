@@ -18,11 +18,6 @@ fun main(args: Array<String>) {
             height = 578
         }
         program {
-            extend(ScreenRecorder()) {
-                outputFile = "media/shapes-005.mp4"
-                quitAfterMaximum = true
-                maximumDuration = 10.0
-            }
             extend {
                 drawer.fill = null
                 drawer.stroke = ColorRGBa.PINK
