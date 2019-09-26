@@ -18,7 +18,6 @@ fun main(args: Array<String>) {
             val image = loadImage("data/cheeta.jpg")
         
             extend {
-                val a = 5
                 val areas = (0..10).flatMap { y ->
                     (0..10).map { x ->
                         val source = Rectangle(x * (width / 10.0), y * (height / 10.0), width / 5.0, height / 5.0)
