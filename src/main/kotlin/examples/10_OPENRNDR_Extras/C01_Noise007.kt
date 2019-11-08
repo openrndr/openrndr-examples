@@ -4,13 +4,11 @@ package examples.`10_OPENRNDR_Extras`
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.colorBuffer
+import org.openrndr.draw.tint
 
 import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.extra.noise.*
-import org.openrndr.extra.noise.filters.CellNoise
-import org.openrndr.extra.noise.filters.HashNoise
-import org.openrndr.extra.noise.filters.SpeckleNoise
-import org.openrndr.extra.noise.filters.ValueNoise
+import org.openrndr.extra.noise.filters.*
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.math.Vector2
 import org.openrndr.math.Vector3
@@ -21,10 +19,10 @@ fun main(args: Array<String>) {
     application {
         program {
             val cb = colorBuffer(width, height)
-            val sn = SpeckleNoise()
+            val cn = CellNoise()
             extend {
-                sn.seed = seconds
-                sn.apply(emptyArray(), cb)
+                cn.octaves = 4
+                cn.apply(emptyArray(), cb)
                 drawer.image(cb)
             }
         }
