@@ -7,6 +7,8 @@ import org.openrndr.draw.*
 import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.filter.blur.BoxBlur
+import kotlin.math.cos
+import kotlin.math.sin
 
 fun main(args: Array<String>) {
     application {

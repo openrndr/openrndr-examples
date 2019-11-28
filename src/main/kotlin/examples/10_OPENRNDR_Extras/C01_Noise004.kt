@@ -27,7 +27,7 @@ fun main(args: Array<String>) {
                     for (x in 4 until width step 8) {
                         val radius = when {
                             t < 3.0 -> abs(fbm(100, x * s, y * s, t, ::perlinLinear)) * 16.0
-                            t < 6.0 -> billow(100, x * s, y * s, t, ::perlinLinear) * 2.00
+                            t < 6.0 -> billow(100, x * s, y * s, t, ::perlinLinear) * 2.0
                             else -> rigid(100, x * s, y * s, t, ::perlinLinear) * 16.0
                         }
                         drawer.circle(x * 1.0, y * 1.0, radius)
