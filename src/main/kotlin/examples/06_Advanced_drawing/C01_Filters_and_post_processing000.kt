@@ -5,8 +5,8 @@ import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.*
 import org.openrndr.extensions.SingleScreenshot
+import org.openrndr.extra.fx.blur.BoxBlur
 import org.openrndr.ffmpeg.ScreenRecorder
-import org.openrndr.filter.blur.BoxBlur
 import kotlin.math.cos
 import kotlin.math.sin
 

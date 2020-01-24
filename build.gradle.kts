@@ -1,7 +1,7 @@
 import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val kotlinVersion = "1.3.50"
+val kotlinVersion = "1.3.61"
 
 plugins {
     java
@@ -14,7 +14,7 @@ val applicationMainClass = "TemplateProgramKt"
 val applicationFullLogging = false
 
 val openrndrUseSnapshot = false
-val openrndrVersion = if (openrndrUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.36"
+val openrndrVersion = if (openrndrUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.38-rc.5"
 val openrndrOs = when (OperatingSystem.current()) {
     OperatingSystem.WINDOWS -> "windows"
     OperatingSystem.MAC_OS -> "macos"
@@ -26,16 +26,16 @@ val openrndrOs = when (OperatingSystem.current()) {
 val openrndrFeatures = setOf("video", "panel")
 
 val panelUseSnapshot = false
-val panelVersion = if (panelUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.18"
+val panelVersion = if (panelUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.20-rc.1"
 
 val orxUseSnapshot = false
-val orxVersion = if (orxUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.41"
+val orxVersion = if (orxUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.46-rc.1"
 
 // supported features are: orx-camera, orx-compositor,orx-easing, orx-filter-extension,orx-file-watcher, orx-kinect-v1
 // orx-integral-image, orx-interval-tree, orx-jumpflood,orx-kdtree, orx-mesh-generators,orx-midi, orx-no-clear,
 // orx-noise, orx-obj, orx-olive
 
-val orxFeatures = setOf("orx-noise", "orx-midi")
+val orxFeatures = setOf("orx-noise", "orx-midi", "orx-fx")
 
 repositories {
     mavenCentral()
@@ -70,7 +70,7 @@ dependencies {
     compile(openrndr("extensions"))
     compile(openrndr("filter"))
 
-    compile("org.jetbrains.kotlinx", "kotlinx-coroutines-core","1.3.0-RC")
+    compile("org.jetbrains.kotlinx", "kotlinx-coroutines-core","1.3.3")
 
     compile("io.github.microutils", "kotlin-logging","1.7.2")
 
