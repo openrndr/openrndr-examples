@@ -42,7 +42,8 @@ fun main(args: Array<String>) {
                 // -- need a pink background because the filter introduces transparent areas
                 drawer.background(ColorRGBa.PINK)
                 filter.window = (cos(seconds * 0.5 * PI) * 16 + 16).toInt()
-                filter.shift = Vector2(cos(seconds * PI), sin(seconds * PI)) * cos(seconds * 0.25 * PI) * 16.0
+                filter.xShift = cos(seconds * PI) * 16.0
+                filter.yShift = sin(seconds * PI) * 16.0
                 filter.apply(rt.colorBuffer(0), filtered)
                 drawer.image(filtered)
             }
