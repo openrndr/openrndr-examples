@@ -13,7 +13,6 @@ import org.openrndr.extra.fx.blend.Multiply
 import org.openrndr.extra.fx.blur.ApproximateGaussianBlur
 import org.openrndr.extra.gui.GUI
 import org.openrndr.extra.parameters.ColorParameter
-import org.openrndr.extra.parameters.Description
 import org.openrndr.extra.parameters.DoubleParameter
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.extra.compositor.draw
