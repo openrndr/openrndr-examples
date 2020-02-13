@@ -9,10 +9,7 @@ import org.openrndr.extra.fx.color.ChromaticAberration
 import org.openrndr.extra.fx.color.ColorCorrection
 import org.openrndr.extra.fx.color.LumaOpacity
 import org.openrndr.extra.fx.color.LumaThreshold
-import org.openrndr.extra.fx.distort.BlockRepeat
-import org.openrndr.extra.fx.distort.HorizontalWave
-import org.openrndr.extra.fx.distort.StackRepeat
-import org.openrndr.extra.fx.distort.VerticalWave
+import org.openrndr.extra.fx.distort.*
 import org.openrndr.extra.fx.dither.ADither
 import org.openrndr.extra.fx.dither.CMYKHalftone
 import org.openrndr.extra.fx.edges.LumaSobel
@@ -27,24 +24,13 @@ fun main(args: Array<String>) {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-            val filter = DropShadow()
+            val filter = ADither()
             val filtered = colorBuffer(image.width, image.height)
         
-            val rt = renderTarget(width, height) {
-                colorBuffer()
-            }
-        
             extend {
-                drawer.isolatedWithTarget(rt) {
-                    drawer.background(ColorRGBa.TRANSPARENT)
-                    drawer.image(image, (image.width - image.width * 0.8) / 2, (image.height - image.height * 0.8) / 2, image.width * 0.8, image.height * 0.8)
-                }
-                // -- need a pink background because the filter introduces transparent areas
-                drawer.background(ColorRGBa.PINK)
-                filter.window = (cos(seconds * 0.5 * PI) * 16 + 16).toInt()
-                filter.xShift = cos(seconds * PI) * 16.0
-                filter.yShift = sin(seconds * PI) * 16.0
-                filter.apply(rt.colorBuffer(0), filtered)
+                filter.pattern = ((seconds / 5.0) * 4).toInt().coerceAtMost(3)
+                filter.levels = ((seconds % 1.0) * 3).toInt() + 1
+                filter.apply(image, filtered)
                 drawer.image(filtered)
             }
         }

@@ -9,10 +9,7 @@ import org.openrndr.extra.fx.color.ChromaticAberration
 import org.openrndr.extra.fx.color.ColorCorrection
 import org.openrndr.extra.fx.color.LumaOpacity
 import org.openrndr.extra.fx.color.LumaThreshold
-import org.openrndr.extra.fx.distort.BlockRepeat
-import org.openrndr.extra.fx.distort.HorizontalWave
-import org.openrndr.extra.fx.distort.StackRepeat
-import org.openrndr.extra.fx.distort.VerticalWave
+import org.openrndr.extra.fx.distort.*
 import org.openrndr.extra.fx.dither.ADither
 import org.openrndr.extra.fx.dither.CMYKHalftone
 import org.openrndr.extra.fx.edges.LumaSobel

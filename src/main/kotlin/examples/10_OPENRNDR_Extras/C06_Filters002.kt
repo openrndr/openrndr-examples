@@ -9,10 +9,7 @@ import org.openrndr.extra.fx.color.ChromaticAberration
 import org.openrndr.extra.fx.color.ColorCorrection
 import org.openrndr.extra.fx.color.LumaOpacity
 import org.openrndr.extra.fx.color.LumaThreshold
-import org.openrndr.extra.fx.distort.BlockRepeat
-import org.openrndr.extra.fx.distort.HorizontalWave
-import org.openrndr.extra.fx.distort.StackRepeat
-import org.openrndr.extra.fx.distort.VerticalWave
+import org.openrndr.extra.fx.distort.*
 import org.openrndr.extra.fx.dither.ADither
 import org.openrndr.extra.fx.dither.CMYKHalftone
 import org.openrndr.extra.fx.edges.LumaSobel
@@ -28,11 +25,11 @@ fun main(args: Array<String>) {
         program {
             val image = loadImage("data/images/cheeta.jpg")
             val blurred = colorBuffer(image.width, image.height)
-            val bloom = Bloom()
+            val bloom = GaussianBloom()
             extend {
-                bloom.blendFactor = cos(seconds * Math.PI / 2) * 0.5 + 0.50
-                bloom.downsamples = 6
-                bloom.brightness = 1.0
+                bloom.window = 5
+                bloom.sigma = 3.0
+                bloom.gain = cos(seconds * 0.5 * PI) * 2.0 + 2.0
                 bloom.apply(image, blurred)
                 drawer.image(blurred)
             }

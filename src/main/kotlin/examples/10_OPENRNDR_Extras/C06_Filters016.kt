@@ -24,12 +24,16 @@ fun main(args: Array<String>) {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-            val filter = ChromaticAberration()
+            val filter = CMYKHalftone()
             val filtered = colorBuffer(image.width, image.height)
         
             extend {
-                filter.aberrationFactor = cos(seconds * 0.5 * PI) * 10.0
+                // -- need a white background because the filter introduces transparent areas
+                drawer.background(ColorRGBa.WHITE)
+                filter.dotSize = 1.2
+                filter.scale = cos(seconds * 0.25 * PI) * 2.0 + 6.0
                 filter.apply(image, filtered)
+            
                 drawer.image(filtered)
             }
         }

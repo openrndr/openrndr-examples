@@ -9,10 +9,7 @@ import org.openrndr.extra.fx.color.ChromaticAberration
 import org.openrndr.extra.fx.color.ColorCorrection
 import org.openrndr.extra.fx.color.LumaOpacity
 import org.openrndr.extra.fx.color.LumaThreshold
-import org.openrndr.extra.fx.distort.BlockRepeat
-import org.openrndr.extra.fx.distort.HorizontalWave
-import org.openrndr.extra.fx.distort.StackRepeat
-import org.openrndr.extra.fx.distort.VerticalWave
+import org.openrndr.extra.fx.distort.*
 import org.openrndr.extra.fx.dither.ADither
 import org.openrndr.extra.fx.dither.CMYKHalftone
 import org.openrndr.extra.fx.edges.LumaSobel
@@ -27,16 +24,14 @@ fun main(args: Array<String>) {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-            val filter = CMYKHalftone()
+            val filter = Tiles()
             val filtered = colorBuffer(image.width, image.height)
         
             extend {
-                // -- need a white background because the filter introduces transparent areas
-                drawer.background(ColorRGBa.WHITE)
-                filter.dotSize = 1.2
-                filter.scale = cos(seconds * 0.25 * PI) * 2.0 + 6.0
+                filter.rotation = seconds * 45.0
+                filter.xSegments = (10 + cos(seconds * PI) * 5.0).toInt()
+                filter.ySegments = 30
                 filter.apply(image, filtered)
-            
                 drawer.image(filtered)
             }
         }
