@@ -14,6 +14,7 @@ import org.openrndr.extra.fx.dither.ADither
 import org.openrndr.extra.fx.dither.CMYKHalftone
 import org.openrndr.extra.fx.edges.LumaSobel
 import org.openrndr.extra.fx.shadow.DropShadow
+import org.openrndr.extra.vfx.Contour
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.math.Vector2
 import kotlin.math.PI
@@ -24,15 +25,12 @@ fun main(args: Array<String>) {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-            val filter = HorizontalWave()
+            val filter = StackRepeat()
             val filtered = colorBuffer(image.width, image.height)
         
             extend {
-                filter.amplitude = cos(seconds * PI) * 0.1
-                filter.frequency = sin(seconds * PI) * 4.0
-                if (seconds > 2.5) {
-                    filter.segments = 10
-                }
+                filter.repeats = 4
+                filter.zoom = (cos(seconds * PI) * 0.1 + 0.11)
             
                 filter.apply(image, filtered)
                 drawer.image(filtered)

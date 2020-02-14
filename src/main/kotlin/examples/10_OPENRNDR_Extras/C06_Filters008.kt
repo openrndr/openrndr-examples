@@ -14,6 +14,7 @@ import org.openrndr.extra.fx.dither.ADither
 import org.openrndr.extra.fx.dither.CMYKHalftone
 import org.openrndr.extra.fx.edges.LumaSobel
 import org.openrndr.extra.fx.shadow.DropShadow
+import org.openrndr.extra.vfx.Contour
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.math.Vector2
 import kotlin.math.PI

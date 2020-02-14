@@ -25,15 +25,24 @@ fun main(args: Array<String>) {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-            val filter = Contour()
+            val filter = DropShadow()
             val filtered = colorBuffer(image.width, image.height)
         
+            val rt = renderTarget(width, height) {
+                colorBuffer()
+            }
+        
             extend {
-                filter.backgroundOpacity = 1.0
-                filter.contourColor = ColorRGBa.BLACK
-                filter.contourWidth = 0.4
-                filter.levels = cos(seconds * PI) * 3.0 + 5.1
-                filter.apply(image, filtered)
+                drawer.isolatedWithTarget(rt) {
+                    drawer.background(ColorRGBa.TRANSPARENT)
+                    drawer.image(image, (image.width - image.width * 0.8) / 2, (image.height - image.height * 0.8) / 2, image.width * 0.8, image.height * 0.8)
+                }
+                // -- need a pink background because the filter introduces transparent areas
+                drawer.background(ColorRGBa.PINK)
+                filter.window = (cos(seconds * 0.5 * PI) * 16 + 16).toInt()
+                filter.xShift = cos(seconds * PI) * 16.0
+                filter.yShift = sin(seconds * PI) * 16.0
+                filter.apply(rt.colorBuffer(0), filtered)
                 drawer.image(filtered)
             }
         }

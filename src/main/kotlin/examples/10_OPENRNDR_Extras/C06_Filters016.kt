@@ -14,6 +14,7 @@ import org.openrndr.extra.fx.dither.ADither
 import org.openrndr.extra.fx.dither.CMYKHalftone
 import org.openrndr.extra.fx.edges.LumaSobel
 import org.openrndr.extra.fx.shadow.DropShadow
+import org.openrndr.extra.vfx.Contour
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.math.Vector2
 import kotlin.math.PI
@@ -24,16 +25,13 @@ fun main(args: Array<String>) {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-            val filter = CMYKHalftone()
+            val filter = ADither()
             val filtered = colorBuffer(image.width, image.height)
         
             extend {
-                // -- need a white background because the filter introduces transparent areas
-                drawer.background(ColorRGBa.WHITE)
-                filter.dotSize = 1.2
-                filter.scale = cos(seconds * 0.25 * PI) * 2.0 + 6.0
+                filter.pattern = ((seconds / 5.0) * 4).toInt().coerceAtMost(3)
+                filter.levels = ((seconds % 1.0) * 3).toInt() + 1
                 filter.apply(image, filtered)
-            
                 drawer.image(filtered)
             }
         }

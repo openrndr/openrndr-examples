@@ -9,6 +9,7 @@ import org.openrndr.extras.imageFit.imageFit
 import org.openrndr.ffmpeg.ScreenRecorder
 import kotlin.math.PI
 import kotlin.math.cos
+import kotlin.math.sin
 
 fun main(args: Array<String>) {
     application {

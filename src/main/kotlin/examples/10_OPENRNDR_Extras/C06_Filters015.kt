@@ -14,6 +14,7 @@ import org.openrndr.extra.fx.dither.ADither
 import org.openrndr.extra.fx.dither.CMYKHalftone
 import org.openrndr.extra.fx.edges.LumaSobel
 import org.openrndr.extra.fx.shadow.DropShadow
+import org.openrndr.extra.vfx.Contour
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.math.Vector2
 import kotlin.math.PI
@@ -24,12 +25,13 @@ fun main(args: Array<String>) {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-            val filter = ADither()
+            val filter = Tiles()
             val filtered = colorBuffer(image.width, image.height)
         
             extend {
-                filter.pattern = ((seconds / 5.0) * 4).toInt().coerceAtMost(3)
-                filter.levels = ((seconds % 1.0) * 3).toInt() + 1
+                filter.rotation = seconds * 45.0
+                filter.xSegments = (10 + cos(seconds * PI) * 5.0).toInt()
+                filter.ySegments = 30
                 filter.apply(image, filtered)
                 drawer.image(filtered)
             }
