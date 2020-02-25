@@ -24,14 +24,16 @@ fun main(args: Array<String>) {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-            val filter = Tiles()
+            val filter = CMYKHalftone()
             val filtered = colorBuffer(image.width, image.height)
         
             extend {
-                filter.rotation = seconds * 45.0
-                filter.xSegments = (10 + cos(seconds * PI) * 5.0).toInt()
-                filter.ySegments = 30
+                // -- need a white background because the filter introduces transparent areas
+                drawer.background(ColorRGBa.WHITE)
+                filter.dotSize = 1.2
+                filter.scale = cos(seconds * 0.25 * PI) * 2.0 + 6.0
                 filter.apply(image, filtered)
+            
                 drawer.image(filtered)
             }
         }

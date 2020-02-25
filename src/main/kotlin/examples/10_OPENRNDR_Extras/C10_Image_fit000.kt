@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
             val image = loadImage("data/images/cheeta.jpg")
             extend {
                 val margin = cos(seconds * PI) * 50.0 + 50.0
-                drawer.imageFit(image, 20.0, 20.0 + margin / 2, width - 40.0, height - 40.0 - margin, FitMethod.Contain)
+                drawer.imageFit(image, 20.0, 20.0 + margin / 2, width - 40.0, height - 40.0 - margin, fitMethod = FitMethod.Contain)
                 // -- illustrate the placement rectangle
                 drawer.fill = null
                 drawer.stroke = ColorRGBa.WHITE

@@ -5,13 +5,12 @@ import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.*
 import org.openrndr.extra.fx.blur.*
-import org.openrndr.extra.fx.color.ChromaticAberration
-import org.openrndr.extra.fx.color.ColorCorrection
-import org.openrndr.extra.fx.color.LumaOpacity
-import org.openrndr.extra.fx.color.LumaThreshold
+import org.openrndr.extra.fx.color.*
 import org.openrndr.extra.fx.distort.*
 import org.openrndr.extra.fx.dither.ADither
 import org.openrndr.extra.fx.dither.CMYKHalftone
+import org.openrndr.extra.fx.dither.Crosshatch
+import org.openrndr.extra.fx.edges.EdgesWork
 import org.openrndr.extra.fx.edges.LumaSobel
 import org.openrndr.extra.fx.shadow.DropShadow
 import org.openrndr.extra.vfx.Contour
@@ -25,13 +24,14 @@ fun main(args: Array<String>) {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-            val filter = StackRepeat()
+            val filter = Contour()
             val filtered = colorBuffer(image.width, image.height)
         
             extend {
-                filter.repeats = 4
-                filter.zoom = (cos(seconds * PI) * 0.1 + 0.11)
-            
+                filter.backgroundOpacity = 1.0
+                filter.contourColor = ColorRGBa.BLACK
+                filter.contourWidth = 0.4
+                filter.levels = cos(seconds * PI) * 3.0 + 5.1
                 filter.apply(image, filtered)
                 drawer.image(filtered)
             }

@@ -24,14 +24,19 @@ fun main(args: Array<String>) {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-            val filter = Tiles()
+            val filter = Crosshatch()
             val filtered = colorBuffer(image.width, image.height)
         
             extend {
-                filter.rotation = seconds * 45.0
-                filter.xSegments = (10 + cos(seconds * PI) * 5.0).toInt()
-                filter.ySegments = 30
+                // -- need a white background because the filter introduces transparent areas
+                drawer.background(ColorRGBa.WHITE)
+                filter.t1 = cos(seconds * PI) * 0.25 + 0.25
+                filter.t2 = filter.t1 + cos(seconds * PI * 0.5) * 0.25 + 0.25
+                filter.t3 = filter.t2 + cos(seconds * PI * 0.25) * 0.25 + 0.25
+                filter.t4 = filter.t3 + cos(seconds * PI * 0.125) * 0.25 + 0.25
+            
                 filter.apply(image, filtered)
+            
                 drawer.image(filtered)
             }
         }

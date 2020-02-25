@@ -5,13 +5,12 @@ import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.*
 import org.openrndr.extra.fx.blur.*
-import org.openrndr.extra.fx.color.ChromaticAberration
-import org.openrndr.extra.fx.color.ColorCorrection
-import org.openrndr.extra.fx.color.LumaOpacity
-import org.openrndr.extra.fx.color.LumaThreshold
+import org.openrndr.extra.fx.color.*
 import org.openrndr.extra.fx.distort.*
 import org.openrndr.extra.fx.dither.ADither
 import org.openrndr.extra.fx.dither.CMYKHalftone
+import org.openrndr.extra.fx.dither.Crosshatch
+import org.openrndr.extra.fx.edges.EdgesWork
 import org.openrndr.extra.fx.edges.LumaSobel
 import org.openrndr.extra.fx.shadow.DropShadow
 import org.openrndr.extra.vfx.Contour

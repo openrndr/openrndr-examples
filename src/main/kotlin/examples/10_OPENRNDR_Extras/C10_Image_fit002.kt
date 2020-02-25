@@ -20,7 +20,7 @@ fun main(args: Array<String>) {
                 val xm = cos(seconds * PI) * 50.0 + 50.0
                 val ym = sin(seconds * PI) * 50.0 + 50.0
             
-                drawer.imageFit(image, 20.0 + xm / 2.0, 20.0 + ym / 2, width - 40.0 - xm, height - 40.0 - ym, FitMethod.Cover)
+                drawer.imageFit(image, 20.0 + xm / 2.0, 20.0 + ym / 2, width - 40.0 - xm, height - 40.0 - ym)
             
                 // -- illustrate the placement rectangle
                 drawer.fill = null
