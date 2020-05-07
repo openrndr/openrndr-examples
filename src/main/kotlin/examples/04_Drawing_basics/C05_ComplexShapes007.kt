@@ -16,18 +16,18 @@ fun main(args: Array<String>) {
             height = 578
         }
         program {
+            val c = contour {
+                moveTo(width * (1.0 / 2.0), height * (1.0 / 5.0))
+                curveTo(width * (1.0 / 4.0), height * (2.0 / 5.0), width * (3.0 / 4.0), height * (3.0 / 5.0), width * (2.0 / 4.0), height * (4.0 / 5.0))
+            }
             extend {
-                val c = contour {
-                    moveTo(Vector2(width / 2.0 - 150.0, height / 2.0 - 150.00))
-                    // -- here `cursor` points to the end point of the previous command
-                    lineTo(cursor + Vector2(300.0, 0.0))
-                    lineTo(cursor + Vector2(0.0, 300.0))
-                    lineTo(anchor)
-                    close()
-                }
-                drawer.fill = ColorRGBa.PINK
-                drawer.stroke = null
+                drawer.stroke = ColorRGBa.PINK
+                drawer.strokeWeight = 2.0
                 drawer.contour(c)
+                for (i in -8..8) {
+                    val o = c.offset(i * 10.0 * (cos(seconds * 0.5 + 0.5)))
+                    drawer.contour(o)
+                }
             }
         }
     }

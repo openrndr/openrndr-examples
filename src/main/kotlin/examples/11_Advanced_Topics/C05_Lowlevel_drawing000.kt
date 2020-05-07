@@ -38,7 +38,7 @@ fun main(args: Array<String>) {
                 }                                                                
                 """
         
-            val shader = Shader.createFromCode(vs, fs)
+            val shader = Shader.createFromCode(vs, fs, name = "custom-shader")
         
             extend {
                 shader.begin()

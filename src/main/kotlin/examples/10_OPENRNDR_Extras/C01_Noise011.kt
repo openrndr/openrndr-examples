@@ -20,10 +20,12 @@ fun main(args: Array<String>) {
     application {
         program {
             val cb = colorBuffer(width, height)
-            val hn = HashNoise()
+            val vn = ValueNoise()
             extend {
-                hn.seed = seconds
-                hn.apply(emptyArray(), cb)
+                vn.scale = Vector2.ONE * 4.0
+                vn.gain = Vector4.ONE * 0.5
+                vn.octaves = 8
+                vn.apply(emptyArray(), cb)
                 drawer.image(cb)
             }
         }

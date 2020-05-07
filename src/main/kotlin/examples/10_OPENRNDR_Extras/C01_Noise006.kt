@@ -3,6 +3,7 @@ package examples.`10_OPENRNDR_Extras`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
+import org.openrndr.draw.LineCap
 import org.openrndr.draw.colorBuffer
 import org.openrndr.draw.tint
 
@@ -18,21 +19,20 @@ import kotlin.math.abs
 fun main(args: Array<String>) {
     application {
         program {
-            extend(ScreenRecorder()) {
-                outputFile = "media/orx-noise-filter-008.mp4"
-                quitAfterMaximum = true
-                maximumDuration = 9.0
-            }
         
-            val cb = colorBuffer(width, height)
-            val sn = SimplexNoise3D()
+            val noise = fbmFunc3D(::simplex, octaves = 3)
             extend {
-                sn.seed = Vector3(0.0, 0.0, seconds * 0.1)
-                sn.scale = Vector3.ONE * 2.0
-                sn.octaves = 8
-                sn.premultipliedAlpha = false
-                sn.apply(emptyArray(), cb)
-                drawer.image(cb)
+                drawer.fill = null
+                drawer.stroke = ColorRGBa.PINK
+                drawer.lineCap = LineCap.ROUND
+                drawer.strokeWeight = 1.5
+                val t = seconds
+                for (y in 4 until height step 8) {
+                    for (x in 4 until width step 8) {
+                        val g = gradient3D(noise, 100, x * 0.002, y * 0.002, t, 0.002).xy
+                        drawer.lineSegment(Vector2(x * 1.0, y * 1.0) - g * 1.0, Vector2(x * 1.0, y * 1.0) + g * 1.0)
+                    }
+                }
             }
         }
     }

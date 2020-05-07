@@ -27,24 +27,26 @@ import kotlin.math.sin
 fun main(args: Array<String>) {
     application {
         program {
-            val composite = compose {
-                layer {
-                    post(Checkers())
-                }
-            
-                layer {
-                    val image = loadImage("data/images/cheeta.jpg")
-                    draw {
-                        drawer.imageFit(image, 0.0, 0.0, width * 1.0, height * 1.0)
-                    }
-                    post(PerspectivePlane()) {
-                        planePitch = cos(seconds * 0.5 * PI) * 22.5
-                        planeYaw = sin(seconds * 0.5 * PI) * 22.5
-                    }
-                }
+            val image = loadImage("data/images/cheeta.jpg")
+            val filter = DropShadow()
+            val filtered = colorBuffer(image.width, image.height)
+        
+            val rt = renderTarget(width, height) {
+                colorBuffer()
             }
+        
             extend {
-                composite.draw(drawer)
+                drawer.isolatedWithTarget(rt) {
+                    drawer.background(ColorRGBa.TRANSPARENT)
+                    drawer.image(image, (image.width - image.width * 0.8) / 2, (image.height - image.height * 0.8) / 2, image.width * 0.8, image.height * 0.8)
+                }
+                // -- need a pink background because the filter introduces transparent areas
+                drawer.background(ColorRGBa.PINK)
+                filter.window = (cos(seconds * 0.5 * PI) * 16 + 16).toInt()
+                filter.xShift = cos(seconds * PI) * 16.0
+                filter.yShift = sin(seconds * PI) * 16.0
+                filter.apply(rt.colorBuffer(0), filtered)
+                drawer.image(filtered)
             }
         }
     }

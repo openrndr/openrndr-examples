@@ -38,7 +38,7 @@ fun main(args: Array<String>) {
             }
             """
     
-        class Noise : Filter(filterShaderFromCode(noiseShader)) {
+        class Noise : Filter(filterShaderFromCode(noiseShader, "noise-shader")) {
             // -- note the 'by parameters' here, this is what wires the fields up to the uniforms
             var gain: Double by parameters
             var time: Double by parameters

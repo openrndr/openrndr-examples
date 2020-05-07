@@ -7,6 +7,8 @@ import org.openrndr.draw.ColorType
 import org.openrndr.draw.loadImage
 import org.openrndr.extra.compositor.*
 import org.openrndr.extra.jumpfill.DistanceField
+import org.openrndr.extra.jumpfill.fx.InnerGlow
+import org.openrndr.extra.jumpfill.fx.OuterGlow
 import org.openrndr.ffmpeg.ScreenRecorder
 import kotlin.math.PI
 import kotlin.math.cos
@@ -29,7 +31,6 @@ fun main(args: Array<String>) {
                     }
                 }
             }
-        
             extend {
                 c.draw(drawer)
             }

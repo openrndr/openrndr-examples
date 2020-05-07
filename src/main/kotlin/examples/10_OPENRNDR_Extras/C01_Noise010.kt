@@ -20,10 +20,10 @@ fun main(args: Array<String>) {
     application {
         program {
             val cb = colorBuffer(width, height)
-            val hn = HashNoise()
+            val sn = SpeckleNoise()
             extend {
-                hn.seed = seconds
-                hn.apply(emptyArray(), cb)
+                sn.seed = seconds
+                sn.apply(emptyArray(), cb)
                 drawer.image(cb)
             }
         }

@@ -3,6 +3,7 @@ package examples.`10_OPENRNDR_Extras`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
+import org.openrndr.draw.LineCap
 import org.openrndr.draw.colorBuffer
 import org.openrndr.draw.tint
 
@@ -19,12 +20,10 @@ fun main(args: Array<String>) {
     application {
         program {
             val cb = colorBuffer(width, height)
-            val vn = ValueNoise()
+            val cn = CellNoise()
             extend {
-                vn.scale = Vector2.ONE * 4.0
-                vn.gain = Vector4.ONE * 0.5
-                vn.octaves = 8
-                vn.apply(emptyArray(), cb)
+                cn.octaves = 4
+                cn.apply(emptyArray(), cb)
                 drawer.image(cb)
             }
         }

@@ -6,10 +6,8 @@ import org.openrndr.color.ColorRGBa
 import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.math.Vector2
-import org.openrndr.shape.Circle
-import org.openrndr.shape.compound
-import org.openrndr.shape.contour
-import org.openrndr.shape.shape
+import org.openrndr.shape.*
+import kotlin.math.cos
 
 fun main(args: Array<String>) {
     application {

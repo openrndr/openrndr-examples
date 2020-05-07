@@ -29,17 +29,8 @@ fun main(args: Array<String>) {
         program {
             val composite = compose {
                 layer {
-                    post(Checkers())
-                }
-            
-                layer {
-                    val image = loadImage("data/images/cheeta.jpg")
-                    draw {
-                        drawer.imageFit(image, 0.0, 0.0, width * 1.0, height * 1.0)
-                    }
-                    post(PerspectivePlane()) {
-                        planePitch = cos(seconds * 0.5 * PI) * 22.5
-                        planeYaw = sin(seconds * 0.5 * PI) * 22.5
+                    post(Checkers()) {
+                        size = cos(seconds * 0.5 * PI) * 0.6 + 0.4
                     }
                 }
             }

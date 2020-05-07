@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
                         drawer.fill = ColorRGBa.PINK
                         drawer.circle(width / 2.0, height / 2.0, 200.0)
                     }
-                    post(OuterGlow()) {
+                    post(InnerGlow()) {
                         this.width = (cos(seconds * PI) * 0.5 + 0.5) * 100.0
                     }
                 }

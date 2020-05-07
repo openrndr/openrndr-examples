@@ -6,10 +6,8 @@ import org.openrndr.color.ColorRGBa
 import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.math.Vector2
-import org.openrndr.shape.Circle
-import org.openrndr.shape.compound
-import org.openrndr.shape.contour
-import org.openrndr.shape.shape
+import org.openrndr.shape.*
+import kotlin.math.cos
 
 fun main(args: Array<String>) {
     application {
@@ -30,7 +28,7 @@ fun main(args: Array<String>) {
                 drawer.circles(points0, 10.0)
             
     
-                val points1 = Circle(585.0, height / 2.0, 90.0).contour.equidistantPositions((Math.cos(seconds) * 10.0 + 30.0).toInt())
+                val points1 = Circle(585.0, height / 2.0, 90.0).contour.equidistantPositions((cos(seconds) * 10.0 + 30.0).toInt())
                 drawer.circles(points1, 10.0)
             }
         }

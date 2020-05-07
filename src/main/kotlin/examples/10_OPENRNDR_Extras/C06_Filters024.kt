@@ -27,24 +27,18 @@ import kotlin.math.sin
 fun main(args: Array<String>) {
     application {
         program {
-            val composite = compose {
-                layer {
-                    post(Checkers())
-                }
-            
-                layer {
-                    val image = loadImage("data/images/cheeta.jpg")
-                    draw {
-                        drawer.imageFit(image, 0.0, 0.0, width * 1.0, height * 1.0)
-                    }
-                    post(PerspectivePlane()) {
-                        planePitch = cos(seconds * 0.5 * PI) * 22.5
-                        planeYaw = sin(seconds * 0.5 * PI) * 22.5
-                    }
-                }
-            }
+            val image = loadImage("data/images/cheeta.jpg")
+            val filter = CMYKHalftone()
+            val filtered = colorBuffer(image.width, image.height)
+        
             extend {
-                composite.draw(drawer)
+                // -- need a white background because the filter introduces transparent areas
+                drawer.background(ColorRGBa.WHITE)
+                filter.dotSize = 1.2
+                filter.scale = cos(seconds * 0.25 * PI) * 2.0 + 6.0
+                filter.apply(image, filtered)
+            
+                drawer.image(filtered)
             }
         }
     }

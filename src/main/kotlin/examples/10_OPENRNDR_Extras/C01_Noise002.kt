@@ -3,6 +3,7 @@ package examples.`10_OPENRNDR_Extras`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
+import org.openrndr.draw.LineCap
 import org.openrndr.draw.colorBuffer
 import org.openrndr.draw.tint
 
