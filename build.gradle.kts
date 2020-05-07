@@ -8,7 +8,7 @@ plugins {
     kotlin("jvm") version("1.3.72")
 }
 group = "org.openrndr.examples"
-version = "0.3.5"
+version = "0.3.0"
 
 val applicationMainClass = "TemplateProgramKt"
 val applicationFullLogging = false
