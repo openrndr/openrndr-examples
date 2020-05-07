@@ -7,7 +7,7 @@ plugins {
     java
     kotlin("jvm") version("1.3.72")
 }
-group = "org.openrndr.template"
+group = "org.openrndr.examples"
 version = "0.3.5"
 
 val applicationMainClass = "TemplateProgramKt"
