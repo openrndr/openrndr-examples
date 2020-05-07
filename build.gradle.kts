@@ -5,7 +5,7 @@ val kotlinVersion = "1.3.72"
 
 plugins {
     java
-    kotlin("jvm") version("1.3.50")
+    kotlin("jvm") version("1.3.72")
 }
 group = "org.openrndr.template"
 version = "0.3.5"
@@ -33,11 +33,12 @@ val orxVersion = if (orxUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.51-rc.4"
 // orx-integral-image, orx-interval-tree, orx-jumpflood,orx-kdtree, orx-mesh-generators,orx-midi, orx-no-clear,
 // orx-noise, orx-obj, orx-olive
 
-val orxFeatures = setOf("orx-noise", "orx-midi", "orx-fx", "orx-compositor", "orx-panel")
+val orxFeatures = setOf("orx-noise", "orx-midi", "orx-fx", "orx-compositor", "orx-panel", "orx-osc", "orx-shade-styles", "orx-image-fit", "orx-panel",
+        "orx-gui", "orx-poisson-fill", "orx-jumpflood")
 
 repositories {
     mavenCentral()
-    if (openrndrUseSnapshot || orxUseSnapshot || panelUseSnapshot) {
+    if (openrndrUseSnapshot || orxUseSnapshot ) {
         mavenLocal()
     }
     maven(url = "https://dl.bintray.com/openrndr/openrndr")
