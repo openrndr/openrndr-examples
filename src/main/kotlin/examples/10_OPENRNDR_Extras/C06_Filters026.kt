@@ -37,11 +37,11 @@ fun main(args: Array<String>) {
         
             extend {
                 drawer.isolatedWithTarget(rt) {
-                    drawer.background(ColorRGBa.TRANSPARENT)
+                    drawer.clear(ColorRGBa.TRANSPARENT)
                     drawer.image(image, (image.width - image.width * 0.8) / 2, (image.height - image.height * 0.8) / 2, image.width * 0.8, image.height * 0.8)
                 }
                 // -- need a pink background because the filter introduces transparent areas
-                drawer.background(ColorRGBa.PINK)
+                drawer.clear(ColorRGBa.PINK)
                 filter.window = (cos(seconds * 0.5 * PI) * 16 + 16).toInt()
                 filter.xShift = cos(seconds * PI) * 16.0
                 filter.yShift = sin(seconds * PI) * 16.0

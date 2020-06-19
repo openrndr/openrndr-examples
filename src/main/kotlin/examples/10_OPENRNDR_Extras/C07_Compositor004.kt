@@ -29,7 +29,7 @@ fun main(args: Array<String>) {
         
             val composite = compose {
                 draw {
-                    drawer.background(ColorRGBa.PINK)
+                    drawer.clear(ColorRGBa.PINK)
                 }
                 layer {
                     // -- load the image inside the layer

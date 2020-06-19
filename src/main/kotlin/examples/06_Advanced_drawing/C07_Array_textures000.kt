@@ -24,9 +24,9 @@ fun main(args: Array<String>) {
                 }
                 var index = 0
                 extend {
-                    drawer.background(ColorRGBa.BLACK)
+                    drawer.clear(ColorRGBa.BLACK)
                     drawer.isolatedWithTarget(renderTargets[index % renderTargets.size]) {
-                        drawer.background(ColorRGBa.BLACK)
+                        drawer.clear(ColorRGBa.BLACK)
                         drawer.fill = ColorRGBa.PINK.opacify(0.5)
                         drawer.stroke = null
                         for (i in 0 until 20) {

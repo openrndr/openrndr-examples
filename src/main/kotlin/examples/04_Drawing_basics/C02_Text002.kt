@@ -21,7 +21,7 @@ fun main(args: Array<String>) {
         program {
             val font = loadFont("file:data/IBMPlexMono-Bold.ttf", 24.0)
             extend {
-                drawer.background(ColorRGBa.PINK)
+                drawer.clear(ColorRGBa.PINK)
                 drawer.fontMap = font
                 drawer.fill = ColorRGBa.BLACK
             

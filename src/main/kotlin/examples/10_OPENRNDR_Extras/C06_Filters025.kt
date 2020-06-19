@@ -33,7 +33,7 @@ fun main(args: Array<String>) {
         
             extend {
                 // -- need a white background because the filter introduces transparent areas
-                drawer.background(ColorRGBa.WHITE)
+                drawer.clear(ColorRGBa.WHITE)
                 filter.t1 = cos(seconds * PI) * 0.25 + 0.25
                 filter.t2 = filter.t1 + cos(seconds * PI * 0.5) * 0.25 + 0.25
                 filter.t3 = filter.t2 + cos(seconds * PI * 0.25) * 0.25 + 0.25

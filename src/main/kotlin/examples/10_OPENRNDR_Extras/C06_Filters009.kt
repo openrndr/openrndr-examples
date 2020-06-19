@@ -33,7 +33,7 @@ fun main(args: Array<String>) {
         
             extend {
                 // -- a pink background to demonstrate the introduced transparencies
-                drawer.background(ColorRGBa.PINK)
+                drawer.clear(ColorRGBa.PINK)
                 filter.backgroundOpacity = 0.0
                 filter.foregroundOpacity = 1.0
                 filter.backgroundLuma = cos(seconds * PI) * 0.25 + 0.25

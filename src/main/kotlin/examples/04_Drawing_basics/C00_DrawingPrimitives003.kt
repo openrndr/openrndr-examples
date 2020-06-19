@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
     application {
         program {
             extend {
-                drawer.background(ColorRGBa.PINK)
+                drawer.clear(ColorRGBa.PINK)
                 // -- setup line appearance
                 drawer.stroke = ColorRGBa.BLACK
                 drawer.strokeWeight = 5.0

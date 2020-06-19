@@ -44,7 +44,7 @@ fun main(args: Array<String>) {
             extend(gui)
             extend {
                 drawer.isolatedWithTarget(rt) {
-                    drawer.background(ColorRGBa.BLACK)
+                    drawer.clear(ColorRGBa.BLACK)
                     // -- use our settings
                     drawer.circle(settings.x, settings.y, 100.0)
                 }

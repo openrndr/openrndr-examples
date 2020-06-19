@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
         
             extend {
         
-                drawer.background(ColorRGBa.PINK)
+                drawer.clear(ColorRGBa.PINK)
                 drawer.fill = ColorRGBa.WHITE
                 drawer.stroke = ColorRGBa.BLACK
                 drawer.strokeWeight = 1.0

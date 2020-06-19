@@ -38,7 +38,7 @@ fun main(args: Array<String>) {
                             val drawer = secondary.drawer
                             drawer.withTarget(rt) {
                                 drawer.ortho(rt)
-                                drawer.background(ColorRGBa.PINK)
+                                drawer.clear(ColorRGBa.PINK)
                             }
                         
                             // -- destroy the render target

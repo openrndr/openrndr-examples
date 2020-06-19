@@ -28,7 +28,7 @@ fun main(args: Array<String>) {
         program {
             val composite = compose {
                 draw {
-                    drawer.background(ColorRGBa.PINK)
+                    drawer.clear(ColorRGBa.PINK)
                 }
                 layer {
                     // -- we nest layers to prevent the text layer to be blend with the background

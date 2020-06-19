@@ -33,7 +33,7 @@ fun main(args: Array<String>) {
         
             extend {
                 // -- need a white background because the filter introduces transparent areas
-                drawer.background(ColorRGBa.WHITE)
+                drawer.clear(ColorRGBa.WHITE)
                 filter.dotSize = 1.2
                 filter.scale = cos(seconds * 0.25 * PI) * 2.0 + 6.0
                 filter.apply(image, filtered)

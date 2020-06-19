@@ -36,7 +36,7 @@ fun main(args: Array<String>) {
         
             extend {
                 drawer.isolatedWithTarget(rt) {
-                    drawer.background(ColorRGBa.BLACK)
+                    drawer.clear(ColorRGBa.BLACK)
                     drawer.image(image, cos(seconds * PI) * 40.0, sin(seconds * PI) * 40.0)
                 }
             

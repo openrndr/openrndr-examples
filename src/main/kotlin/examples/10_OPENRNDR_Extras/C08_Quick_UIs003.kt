@@ -43,7 +43,7 @@ fun main(args: Array<String>) {
             val composite = compose {
                 layer {
                     draw {
-                        drawer.background(settings.background)
+                        drawer.clear(settings.background)
                     }
                 }
                 layer {

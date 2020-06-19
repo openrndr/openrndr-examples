@@ -28,7 +28,7 @@ fun main(args: Array<String>) {
                 }
             }
             extend {
-                drawer.background(color)
+                drawer.clear(color)
             }
         }
     }
