@@ -16,6 +16,7 @@ import org.openrndr.extra.parameters.ColorParameter
 import org.openrndr.extra.parameters.DoubleParameter
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.extra.compositor.draw
+import org.openrndr.extra.gui.addTo
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin

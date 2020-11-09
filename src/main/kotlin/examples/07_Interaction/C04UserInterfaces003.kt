@@ -29,7 +29,7 @@ fun main(args: Array<String>) {
                         value = 0.50
                         range = Range(0.0, 1.0)
                         precision = 2
-                        events.valueChanged.subscribe {
+                        events.valueChanged.listen {
                             println("the new value is ${it.newValue}")
                         }
                     }

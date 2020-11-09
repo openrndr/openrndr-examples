@@ -23,7 +23,7 @@ fun main(args: Array<String>) {
                     colorpickerButton {
                         label = "Pick a color"
                         color = ColorRGBa.PINK
-                        events.valueChanged.subscribe {
+                        events.valueChanged.listen {
                             println("the new color is ${it.color}")
                         }
                     }

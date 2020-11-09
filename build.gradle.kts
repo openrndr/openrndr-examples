@@ -14,7 +14,7 @@ val applicationMainClass = "TemplateProgramKt"
 val applicationFullLogging = false
 
 val openrndrUseSnapshot = false
-val openrndrVersion = if (openrndrUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.42-rc.5"
+val openrndrVersion = if (openrndrUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.44"
 val openrndrOs = when (OperatingSystem.current()) {
     OperatingSystem.WINDOWS -> "windows"
     OperatingSystem.MAC_OS -> "macos"
@@ -27,7 +27,7 @@ val openrndrFeatures = setOf("video", "panel")
 
 
 val orxUseSnapshot = false
-val orxVersion = if (orxUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.51-rc.4"
+val orxVersion = if (orxUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.53"
 
 // supported features are: orx-camera, orx-compositor,orx-easing, orx-filter-extension,orx-file-watcher, orx-kinect-v1
 // orx-integral-image, orx-interval-tree, orx-jumpflood,orx-kdtree, orx-mesh-generators,orx-midi, orx-no-clear,

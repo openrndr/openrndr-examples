@@ -25,14 +25,14 @@ fun main(args: Array<String>) {
                     
                         item {
                             label = "Item 1"
-                            events.picked.subscribe {
+                            events.picked.listen {
                                 println("you picked item 1")
                             }
                         }
                     
                         item {
                             label = "Item 2"
-                            events.picked.subscribe {
+                            events.picked.listen {
                                 println("you picked item 2")
                             }
                         }

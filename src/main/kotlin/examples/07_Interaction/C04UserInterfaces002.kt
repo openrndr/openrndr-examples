@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
                 layout {
                     button {
                         label = "Click me "
-                        events.clicked.subscribe {// -- do something with the clicked event
+                        events.clicked.listen {// -- do something with the clicked event
                         }
                     }
                 }

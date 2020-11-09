@@ -16,6 +16,7 @@ import org.openrndr.extra.parameters.ColorParameter
 import org.openrndr.extra.parameters.DoubleParameter
 import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.extra.compositor.draw
+import org.openrndr.extra.gui.addTo
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -58,9 +59,10 @@ fun main(args: Array<String>) {
                             drawer.fill = ColorRGBa.BLUE
                             drawer.circle(settings.x + settings.separation, settings.y, 200.0)
                         }
-                        // -- add blend to layer and side
-                        blend(gui.add(Multiply(), "Multiply blend"))
-                    }
+                        // -- add blend to layer and sidebar
+                        blend(gui.add(Multiply(), "Multiply blend"))// -- add layer to sidebar to toggle it on / off
+                    
+                    }.addTo(gui, "Blue layer")
                     // -- add post to layer and sidebar
                     post(gui.add(ApproximateGaussianBlur())) {
                         sigma = sin(seconds * PI) * 10.0 + 10.01
