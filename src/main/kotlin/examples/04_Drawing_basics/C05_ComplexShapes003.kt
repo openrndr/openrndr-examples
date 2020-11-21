@@ -3,11 +3,12 @@ package examples.`04_Drawing_basics`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.extensions.SingleScreenshot
-import org.openrndr.ffmpeg.ScreenRecorder
+import org.openrndr.extensions.Screenshots
 import org.openrndr.math.Vector2
 import org.openrndr.shape.*
 import kotlin.math.cos
+import kotlin.math.sin
+import java.lang.Math.toRadians
 
 fun main(args: Array<String>) {
     application {
@@ -17,21 +18,25 @@ fun main(args: Array<String>) {
         }
         program {
             extend {
-                drawer.fill = ColorRGBa.PINK
-                drawer.stroke = null
-                val cross = compound {
-                    union {
-                        intersection {
-                            shape(Circle(width / 2.0 - 160.0, height / 2.0, 200.0).shape)
-                            shape(Circle(width / 2.0 + 160.0, height / 2.0, 200.0).shape)
-                        }
-                        intersection {
-                            shape(Circle(width / 2.0, height / 2.0 - 160.0, 200.0).shape)
-                            shape(Circle(width / 2.0, height / 2.0 + 160.0, 200.0).shape)
-                        }
+                val drawingCenter = Vector2(width * 0.5, height * 0.5)
+                val cross = drawComposition {
+                    fill = ColorRGBa.PINK
+                    stroke = null
+
+                    val flower = (0 until 360 step 45).map { degrees ->
+                        val center1 = drawingCenter +
+                                Vector2(cos(toRadians(degrees.toDouble())), sin(toRadians(degrees.toDouble()))) * 70.0
+                        val center2 = drawingCenter +
+                                Vector2(cos(toRadians(degrees - 45.0)), sin(toRadians(degrees - 45.0))) * 70.0
+                        intersection(
+                                Circle(center1, 65.0).shape,
+                                Circle(center2, 65.0).shape
+                        )
                     }
+                    shapes(flower)
                 }
-                drawer.shapes(cross)
+
+                drawer.composition(cross)
             }
         }
     }

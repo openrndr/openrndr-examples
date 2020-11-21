@@ -3,11 +3,7 @@ package examples.`04_Drawing_basics`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.extensions.SingleScreenshot
-import org.openrndr.ffmpeg.ScreenRecorder
-import org.openrndr.math.Vector2
 import org.openrndr.shape.*
-import kotlin.math.cos
 
 fun main(args: Array<String>) {
     application {
@@ -17,34 +13,29 @@ fun main(args: Array<String>) {
         }
         program {
             extend {
-                drawer.fill = ColorRGBa.PINK
-                drawer.stroke = null
-                // -- shape union
-                val su = compound {
-                    union {
-                        shape(Circle(185.0, height / 2.0 - 80.0, 100.0).shape)
-                        shape(Circle(185.0, height / 2.0 + 80.0, 100.0).shape)
-                    }
+                val composition = drawComposition {
+                    fill = ColorRGBa.PINK
+                    stroke = null
+                    // -- shape union
+                    shape(union(
+                        Circle(185.0, height / 2.0 - 80.0, 100.0).shape,
+                        Circle(185.0, height / 2.0 + 80.0, 100.0).shape
+                    ))
+
+                    // -- shape difference
+                    shape(difference(
+                        Circle(385.0, height / 2.0 - 80.0, 100.0).shape,
+                        Circle(385.0, height / 2.0 + 80.0, 100.0).shape
+                    ))
+
+                    // -- shape intersection
+                    shape(intersection(
+                        Circle(585.0, height / 2.0 - 80.0, 100.0).shape,
+                        Circle(585.0, height / 2.0 + 80.0, 100.0).shape
+                    ))
                 }
-                drawer.shapes(su)
-            
-                // -- shape difference
-                val sd = compound {
-                    difference {
-                        shape(Circle(385.0, height / 2.0 - 80.0, 100.0).shape)
-                        shape(Circle(385.0, height / 2.0 + 80.0, 100.0).shape)
-                    }
-                }
-                drawer.shapes(sd)
-            
-                // -- shape intersection
-                val si = compound {
-                    intersection {
-                        shape(Circle(585.0, height / 2.0 - 80.0, 100.0).shape)
-                        shape(Circle(585.0, height / 2.0 + 80.0, 100.0).shape)
-                    }
-                }
-                drawer.shapes(si)
+
+                drawer.composition(composition)
             }
         }
     }
