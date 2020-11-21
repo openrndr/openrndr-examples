@@ -3,7 +3,7 @@ package examples.`04_Drawing_basics`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.extensions.Screenshots
+import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.math.Vector2
 import org.openrndr.shape.*
 import kotlin.math.cos
