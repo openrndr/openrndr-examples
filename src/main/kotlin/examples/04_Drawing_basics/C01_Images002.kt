@@ -15,7 +15,7 @@ import java.io.File
 fun main(args: Array<String>) {
     application {
         program {
-            val image = loadImage("data/cheeta.jpg")
+            val image = loadImage("data/images/cheeta.jpg")
         
             extend {
                 val areas = (0..10).flatMap { y ->

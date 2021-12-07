@@ -15,7 +15,7 @@ import java.io.File
 fun main(args: Array<String>) {
     application {
         program {
-            val image = loadImage("data/cheeta.jpg")
+            val image = loadImage("data/images/cheeta.jpg")
         
             extend {
                 // -- the factors below determine the RGB mixing factors
