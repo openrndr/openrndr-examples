@@ -4,35 +4,25 @@ package examples.`04_Drawing_basics`
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.LineCap
-import org.openrndr.draw.LineJoin
-import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.math.Vector2
-import org.openrndr.shape.Circle
 
-fun main(args: Array<String>) {
+fun main() {
     application {
-        configure {
-        }
         program {
-        
             extend {
                 drawer.clear(ColorRGBa.PINK)
-                drawer.fill = ColorRGBa.WHITE
+                // -- setup line appearance
                 drawer.stroke = ColorRGBa.BLACK
-                drawer.strokeWeight = 1.0
-                drawer.rectangle(width / 6.0 - width / 8.0, height / 2.0 - width / 8.0, width / 4.0, width / 4.0)
+                drawer.strokeWeight = 5.0
+                drawer.lineCap = LineCap.ROUND
             
-                // -- draw circle without fill, but with black stroke
-                drawer.fill = null
-                drawer.stroke = ColorRGBa.BLACK
-                drawer.strokeWeight = 1.0
-                drawer.rectangle(width / 6.0 - width / 8.0 + width / 3.0, height / 2.0 - width / 8.0, width / 4.0, width / 4.0)
+                drawer.lineSegment(10.0, height / 2.0 - 20.0, width - 10.0, height / 2.0 - 20.0)
             
-                // -- draw circle with white fill, but without stroke
-                drawer.fill = ColorRGBa.WHITE
-                drawer.stroke = null
-                drawer.strokeWeight = 1.0
-                drawer.rectangle(width / 6.0 - width / 8.0 + 2.0 * width / 3.0, height / 2.0 - width / 8.0, width / 4.0, width / 4.0)
+                drawer.lineCap = LineCap.BUTT
+                drawer.lineSegment(10.0, height / 2.0, width - 10.0, height / 2.0)
+            
+                drawer.lineCap = LineCap.SQUARE
+                drawer.lineSegment(10.0, height / 2.0 + 20.0, width - 10.0, height / 2.0 + 20.0)
             }
         }
     }

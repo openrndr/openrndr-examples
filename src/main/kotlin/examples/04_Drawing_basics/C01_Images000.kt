@@ -7,15 +7,13 @@ import org.openrndr.draw.grayscale
 import org.openrndr.draw.invert
 import org.openrndr.draw.loadImage
 import org.openrndr.draw.tint
-import org.openrndr.extensions.Screenshots
-import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.shape.Rectangle
-import java.io.File
 
-fun main(args: Array<String>) {
+fun main() {
     application {
+        configure {}
         program {
-            val image = loadImage("data/cheeta.jpg")
+            val image = loadImage("data/images/cheeta.jpg")
         
             extend {
                 drawer.image(image)

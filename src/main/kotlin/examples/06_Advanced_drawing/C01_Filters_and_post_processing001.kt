@@ -4,13 +4,11 @@ package examples.`06_Advanced_drawing`
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.*
-import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.extra.fx.blur.BoxBlur
-import org.openrndr.ffmpeg.ScreenRecorder
 import kotlin.math.cos
 import kotlin.math.sin
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         val noiseShader = """
             #version 330
@@ -42,6 +40,7 @@ fun main(args: Array<String>) {
             // -- note the 'by parameters' here, this is what wires the fields up to the uniforms
             var gain: Double by parameters
             var time: Double by parameters
+        
             init {
                 gain = 1.0
                 time = 0.0
@@ -54,6 +53,7 @@ fun main(args: Array<String>) {
                 colorBuffer()
                 depthBuffer()
             }
+        
             extend {
                 // -- draw to offscreen buffer
                 drawer.isolatedWithTarget(offscreen) {

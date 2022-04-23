@@ -3,9 +3,8 @@ package examples.`04_Drawing_basics`
 
 import org.openrndr.application
 import org.openrndr.color.*
-import org.openrndr.extensions.SingleScreenshot
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         configure {
             width = 770

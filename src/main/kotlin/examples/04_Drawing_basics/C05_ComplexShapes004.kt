@@ -3,13 +3,13 @@ package examples.`04_Drawing_basics`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.extensions.SingleScreenshot
-import org.openrndr.ffmpeg.ScreenRecorder
+import org.openrndr.draw.LineJoin
 import org.openrndr.math.Vector2
 import org.openrndr.shape.*
 import kotlin.math.cos
+import kotlin.math.sin
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         configure {
             width = 770
@@ -21,7 +21,7 @@ fun main(args: Array<String>) {
                 drawer.stroke = ColorRGBa.PINK
                 drawer.strokeWeight = 4.0
             
-                val sub0 = Circle(185.0, height / 2.0, 100.0).contour.sub(0.0, 0.5 + 0.50 * Math.sin(seconds))
+                val sub0 = Circle(185.0, height / 2.0, 100.0).contour.sub(0.0, 0.5 + 0.50 * sin(seconds))
                 drawer.contour(sub0)
             
                 val sub1 = Circle(385.0, height / 2.0, 100.0).contour.sub(seconds * 0.1, seconds * 0.1 + 0.1)

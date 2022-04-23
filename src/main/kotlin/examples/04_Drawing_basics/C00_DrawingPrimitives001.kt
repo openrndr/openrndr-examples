@@ -4,27 +4,29 @@ package examples.`04_Drawing_basics`
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.LineCap
-import org.openrndr.draw.LineJoin
-import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.math.Vector2
-import org.openrndr.shape.Circle
 
-fun main(args: Array<String>) {
+fun main() {
     application {
-        configure {
-        }
         program {
-        
             extend {
                 drawer.clear(ColorRGBa.PINK)
                 drawer.fill = ColorRGBa.WHITE
                 drawer.stroke = ColorRGBa.BLACK
                 drawer.strokeWeight = 1.0
+                drawer.rectangle(width / 6.0 - width / 8.0, height / 2.0 - width / 8.0, width / 4.0, width / 4.0)
             
-                val circles = List(50000) {
-                    Circle(Math.random() * width, Math.random() * height, Math.random() * 10.0 + 10.0)
-                }
-                drawer.circles(circles)
+                // -- draw rectangle without fill, but with black stroke
+                drawer.fill = null
+                drawer.stroke = ColorRGBa.BLACK
+                drawer.strokeWeight = 1.0
+                drawer.rectangle(width / 6.0 - width / 8.0 + width / 3.0, height / 2.0 - width / 8.0, width / 4.0, width / 4.0)
+            
+                // -- draw rectangle with white fill, but without stroke
+                drawer.fill = ColorRGBa.WHITE
+                drawer.stroke = null
+                drawer.strokeWeight = 1.0
+                drawer.rectangle(width / 6.0 - width / 8.0 + 2.0 * width / 3.0, height / 2.0 - width / 8.0, width / 4.0, width / 4.0)
             }
         }
     }

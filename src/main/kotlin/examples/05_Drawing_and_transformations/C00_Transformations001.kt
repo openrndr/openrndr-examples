@@ -3,10 +3,9 @@ package examples.`05_Drawing_and_transformations`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.draw.BufferMultisample
-import org.openrndr.ffmpeg.ScreenRecorder
+import kotlin.math.cos
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         configure {
             width = 770
@@ -21,7 +20,7 @@ fun main(args: Array<String>) {
                 // set up horizontal translation
                 drawer.translate(seconds * 100.0, 0.0)
                 // set up vertical translation
-                drawer.translate(0.0, Math.cos(seconds * Math.PI * 2.0) * 50.00)
+                drawer.translate(0.0, cos(seconds * Math.PI * 2.0) * 50.00)
             
                 drawer.rectangle(-50.0, -50.0, 100.0, 100.00)
             }

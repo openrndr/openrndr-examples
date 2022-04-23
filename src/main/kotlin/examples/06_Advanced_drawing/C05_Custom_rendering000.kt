@@ -4,11 +4,10 @@ package examples.`06_Advanced_drawing`
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.*
-import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.math.Vector3
 import org.openrndr.math.transforms.transform
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         program {
             val geometry = vertexBuffer(vertexFormat {

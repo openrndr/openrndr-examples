@@ -3,13 +3,13 @@ package examples.`04_Drawing_basics`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.extensions.SingleScreenshot
-import org.openrndr.ffmpeg.ScreenRecorder
+import org.openrndr.draw.LineJoin
 import org.openrndr.math.Vector2
 import org.openrndr.shape.*
 import kotlin.math.cos
+import kotlin.math.sin
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         configure {
             width = 770
@@ -27,7 +27,6 @@ fun main(args: Array<String>) {
                 val points0 = Circle(385.0, height / 2.0, 90.0).contour.equidistantPositions(20)
                 drawer.circles(points0, 10.0)
             
-    
                 val points1 = Circle(585.0, height / 2.0, 90.0).contour.equidistantPositions((cos(seconds) * 10.0 + 30.0).toInt())
                 drawer.circles(points1, 10.0)
             }

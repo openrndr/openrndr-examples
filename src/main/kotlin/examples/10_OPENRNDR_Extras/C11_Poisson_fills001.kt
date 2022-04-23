@@ -6,14 +6,14 @@ import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.loadImage
 import org.openrndr.extra.compositor.*
 import org.openrndr.extra.fx.color.LumaOpacity
-import org.openrndr.ffmpeg.ScreenRecorder
+
 import org.openrndr.poissonfill.PoissonBlend
 import org.openrndr.poissonfill.PoissonFill
 import org.openrndr.shape.Rectangle
 import kotlin.math.cos
 import kotlin.math.sin
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         program {
             val c = compose {

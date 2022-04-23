@@ -11,20 +11,20 @@ import org.openrndr.extra.fx.distort.*
 import org.openrndr.extra.fx.dither.ADither
 import org.openrndr.extra.fx.dither.CMYKHalftone
 import org.openrndr.extra.fx.dither.Crosshatch
+import org.openrndr.extra.fx.edges.Contour
 import org.openrndr.extra.fx.edges.EdgesWork
 import org.openrndr.extra.fx.edges.LumaSobel
 import org.openrndr.extra.fx.patterns.Checkers
 import org.openrndr.extra.fx.shadow.DropShadow
 import org.openrndr.extra.shadestyles.linearGradient
-import org.openrndr.extra.vfx.Contour
 import org.openrndr.extras.imageFit.imageFit
-import org.openrndr.ffmpeg.ScreenRecorder
+
 import org.openrndr.math.Vector2
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
@@ -36,8 +36,8 @@ fun main(args: Array<String>) {
                 drawer.clear(ColorRGBa.PINK)
                 filter.backgroundOpacity = 0.0
                 filter.foregroundOpacity = 1.0
-                filter.backgroundLuma = cos(seconds * PI) * 0.25 + 0.25
-                filter.foregroundLuma = 1.0 - (cos(seconds * PI) * 0.25 + 0.25)
+                filter.backgroundLuma = cos(seconds) * 0.25 + 0.25
+                filter.foregroundLuma = 1.0 - (cos(seconds) * 0.25 + 0.25)
             
                 filter.apply(image, filtered)
                 drawer.image(filtered)

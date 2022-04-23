@@ -6,16 +6,15 @@ import org.openrndr.animatable.easing.Easing
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.extra.noise.uniform
-import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.math.Vector2
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         val animation = object : Animatable() {
             var x: Double = 0.0
         }
+    
         program {
-        
             extend {
                 animation.updateAnimation()
                 if (!animation.hasAnimations()) {

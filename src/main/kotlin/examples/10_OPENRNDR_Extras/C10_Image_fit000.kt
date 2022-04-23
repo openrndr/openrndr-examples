@@ -6,17 +6,16 @@ import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.loadImage
 import org.openrndr.extras.imageFit.FitMethod
 import org.openrndr.extras.imageFit.imageFit
-import org.openrndr.ffmpeg.ScreenRecorder
-import kotlin.math.PI
+
 import kotlin.math.cos
 import kotlin.math.sin
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
             extend {
-                val margin = cos(seconds * PI) * 50.0 + 50.0
+                val margin = cos(seconds) * 50.0 + 50.0
                 drawer.imageFit(image, 20.0, 20.0 + margin / 2, width - 40.0, height - 40.0 - margin, fitMethod = FitMethod.Contain)
                 // -- illustrate the placement rectangle
                 drawer.fill = null

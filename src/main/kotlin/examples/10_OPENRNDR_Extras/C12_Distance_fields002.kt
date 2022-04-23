@@ -9,11 +9,10 @@ import org.openrndr.extra.compositor.*
 import org.openrndr.extra.jumpfill.DistanceField
 import org.openrndr.extra.jumpfill.fx.InnerGlow
 import org.openrndr.extra.jumpfill.fx.OuterGlow
-import org.openrndr.ffmpeg.ScreenRecorder
-import kotlin.math.PI
+
 import kotlin.math.cos
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         program {
             val c = compose {
@@ -23,7 +22,7 @@ fun main(args: Array<String>) {
                         drawer.circle(width / 2.0, height / 2.0, 200.0)
                     }
                     post(InnerGlow()) {
-                        this.width = (cos(seconds * PI) * 0.5 + 0.5) * 100.0
+                        this.width = (cos(seconds) * 0.5 + 0.5) * 100.0
                     }
                 }
             }

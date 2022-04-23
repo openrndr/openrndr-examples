@@ -3,11 +3,10 @@ package examples.`11_Advanced_Topics`
 
 import org.openrndr.application
 import org.openrndr.draw.*
-import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.internal.Driver
 import org.openrndr.math.Vector3
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         program {
             val geometry = vertexBuffer(vertexFormat {
@@ -22,21 +21,21 @@ fun main(args: Array<String>) {
         
             // -- code for the vertex shader
             val vs = """
-                #version 330                
-                in vec3 a_position;  // -- driver adds a_ prefix (a for attribute)
-                void main() {
-                    gl_Position = vec4(a_position, 1.0);                
-                }
-                """
+            #version 330                
+            in vec3 a_position;  // -- driver adds a_ prefix (a for attribute)
+            void main() {
+                gl_Position = vec4(a_position, 1.0);                
+            }
+            """
         
             // -- code for the fragment shader
             val fs = """
-                #version 330
-                out vec4 o_output;
-                void main() {
-                    o_output = vec4(1.0);                                                                                                                
-                }                                                                
-                """
+            #version 330
+            out vec4 o_output;
+            void main() {
+                o_output = vec4(1.0);                                                                                                                
+            }                                                                
+            """
         
             val shader = Shader.createFromCode(vsCode = vs, fsCode = fs, name = "custom-shader")
         

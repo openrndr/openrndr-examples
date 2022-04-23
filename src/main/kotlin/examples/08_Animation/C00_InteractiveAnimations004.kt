@@ -6,13 +6,11 @@ import org.openrndr.animatable.easing.Easing
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.extra.noise.uniform
-import org.openrndr.ffmpeg.ScreenRecorder
 import org.openrndr.math.Vector2
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         program {
-        
             class AnimatedCircle : Animatable() {
                 var x = 0.0
                 var y = 0.0

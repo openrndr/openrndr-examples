@@ -3,10 +3,9 @@ package examples.`05_Drawing_and_transformations`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.draw.BufferMultisample
-import org.openrndr.ffmpeg.ScreenRecorder
+import kotlin.math.cos
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         configure {
             width = 770

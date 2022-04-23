@@ -11,20 +11,20 @@ import org.openrndr.extra.fx.distort.*
 import org.openrndr.extra.fx.dither.ADither
 import org.openrndr.extra.fx.dither.CMYKHalftone
 import org.openrndr.extra.fx.dither.Crosshatch
+import org.openrndr.extra.fx.edges.Contour
 import org.openrndr.extra.fx.edges.EdgesWork
 import org.openrndr.extra.fx.edges.LumaSobel
 import org.openrndr.extra.fx.patterns.Checkers
 import org.openrndr.extra.fx.shadow.DropShadow
 import org.openrndr.extra.shadestyles.linearGradient
-import org.openrndr.extra.vfx.Contour
 import org.openrndr.extras.imageFit.imageFit
-import org.openrndr.ffmpeg.ScreenRecorder
+
 import org.openrndr.math.Vector2
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
@@ -33,7 +33,7 @@ fun main(args: Array<String>) {
             extend {
                 bloom.window = 5
                 bloom.sigma = 3.0
-                bloom.gain = cos(seconds * 0.5 * PI) * 2.0 + 2.0
+                bloom.gain = cos(seconds * 2) * 2.0 + 2.0
                 bloom.apply(image, blurred)
                 drawer.image(blurred)
             }

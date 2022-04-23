@@ -3,10 +3,9 @@ package examples.`05_Drawing_and_transformations`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.draw.BufferMultisample
-import org.openrndr.ffmpeg.ScreenRecorder
+import kotlin.math.cos
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         configure {
             width = 770
@@ -20,13 +19,13 @@ fun main(args: Array<String>) {
                 // -- translate to center of screen
                 drawer.translate(width / 2.0, height / 2.0)
             
-                drawer.rotate(seconds * 10.0)
+                drawer.rotate(seconds * 60.0)
                 // -- rectangle around the origin
                 drawer.rectangle(-50.0, -50.0, 100.0, 100.0)
             
                 // -- draw a second rectangle, sharing the rotation of the first rectangle but with an offset
                 drawer.translate(150.0, 0.0)
-                drawer.rotate(seconds * 20.0)
+                drawer.rotate(seconds * 15.0)
                 drawer.rectangle(-50.0, -50.0, 100.0, 100.00)
             }
         }

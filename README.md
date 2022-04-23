@@ -9,7 +9,8 @@ the best place to start from when you want to write your own OPENRNDR based prog
 
 ## Usage 
 
-Clone this repository and import in IntelliJ Idea as a Gradle project. Individual programs can be ran by opening their source files
+Clone this repository and import in IntelliJ Idea as a Gradle project. 
+Individual programs can be run by opening their source files
 and clicking on the green wedge shaped icon next to the `main` function.
 
    

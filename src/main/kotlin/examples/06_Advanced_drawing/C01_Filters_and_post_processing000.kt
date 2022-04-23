@@ -4,13 +4,11 @@ package examples.`06_Advanced_drawing`
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.*
-import org.openrndr.extensions.SingleScreenshot
 import org.openrndr.extra.fx.blur.BoxBlur
-import org.openrndr.ffmpeg.ScreenRecorder
 import kotlin.math.cos
 import kotlin.math.sin
 
-fun main(args: Array<String>) {
+fun main() {
     application {
         configure {
             width = 770
@@ -28,13 +26,14 @@ fun main(args: Array<String>) {
             // -- create colorbuffer to hold blur results
             val blurred = colorBuffer(width, height)
         
+    
             extend {
                 // -- draw to offscreen buffer
                 drawer.isolatedWithTarget(offscreen) {
                     clear(ColorRGBa.BLACK)
                     fill = ColorRGBa.PINK
                     stroke = null
-                    circle(Math.cos(seconds) * 100.0 + width / 2, Math.sin(seconds) * 100.0 + height / 2.0, 100.0 + 100.0 * Math.cos(seconds * 2.0))
+                    circle(cos(seconds) * 100.0 + width / 2, sin(seconds) * 100.0 + height / 2.0, 100.0 + 100.0 * cos(seconds * 2.0))
                 }
                 // -- set blur parameters
                 blur.window = 30
