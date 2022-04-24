@@ -1,9 +1,9 @@
 enableFeaturePreview("VERSION_CATALOGS")
 rootProject.name = "openrndr-examples"
 
-val openrndrUseSnapshot = true
-val orxUseSnapshot = true
-val ormlUseSnapshot = true
+val openrndrUseSnapshot = false
+val orxUseSnapshot = false
+val ormlUseSnapshot = false
 
 dependencyResolutionManagement {
     versionCatalogs {
