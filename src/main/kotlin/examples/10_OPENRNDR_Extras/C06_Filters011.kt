@@ -17,7 +17,7 @@ import org.openrndr.extra.fx.edges.LumaSobel
 import org.openrndr.extra.fx.patterns.Checkers
 import org.openrndr.extra.fx.shadow.DropShadow
 import org.openrndr.extra.shadestyles.linearGradient
-import org.openrndr.extras.imageFit.imageFit
+import org.openrndr.extra.imageFit.imageFit
 
 import org.openrndr.math.Vector2
 import kotlin.math.PI

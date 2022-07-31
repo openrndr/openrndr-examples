@@ -1,5 +1,5 @@
 
-package examples.`01_Before_you_start`
+package examples
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
@@ -12,7 +12,7 @@ fun main() {
             extend {
                 drawer.clear(ColorRGBa.PINK)
                 drawer.fill = ColorRGBa.WHITE
-                drawer.circle(drawer.bounds.center, abs(cos(seconds)) * height * 0.5)
+                drawer.circle(drawer.bounds.center, abs(cos(seconds)) * height * 0.51)
             }
         }
     }

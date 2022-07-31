@@ -4,8 +4,8 @@ package examples.`10_OPENRNDR_Extras`
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.loadImage
-import org.openrndr.extras.imageFit.FitMethod
-import org.openrndr.extras.imageFit.imageFit
+import org.openrndr.extra.imageFit.FitMethod
+import org.openrndr.extra.imageFit.imageFit
 
 import kotlin.math.cos
 import kotlin.math.sin
