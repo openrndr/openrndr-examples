@@ -17,15 +17,17 @@ fun main() {
             height = 578
         }
         program {
-            // -- create a contour from Rectangle object
-            val c = Rectangle(100.0, 100.0, width - 200.0, height - 200.0).contour.reversed
-        
+            val c = contour {
+                moveTo(width * (1.0 / 2.0), height * (1.0 / 5.0))
+                curveTo(width * (1.0 / 4.0), height * (2.0 / 5.0), width * (3.0 / 4.0), height * (3.0 / 5.0), width * (2.0 / 4.0), height * (4.0 / 5.0))
+            }
             extend {
-                drawer.fill = null
                 drawer.stroke = ColorRGBa.PINK
+                drawer.strokeWeight = 2.0
+                drawer.lineJoin = LineJoin.ROUND
                 drawer.contour(c)
-                for (i in 1 until 10) {
-                    val o = c.offset(cos(seconds + 0.5) * i * 10.0, SegmentJoin.BEVEL)
+                for (i in -8..8) {
+                    val o = c.offset(i * 10.0 * cos(seconds + 0.5))
                     drawer.contour(o)
                 }
             }
