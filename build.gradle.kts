@@ -1,29 +1,27 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.gradle.internal.os.OperatingSystem
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
-import org.jetbrains.kotlin.utils.addToStdlib.ifTrue
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "org.openrndr.examples"
-version = "0.3.1"
+version = "1.0.0"
 
 val applicationMainClass = "TemplateProgramKt"
 
 /**  ## additional ORX features to be added to this project */
-val orxFeatures = setOf(
+val orxFeatures = setOf<String>(
 //  "orx-boofcv",
-//  "orx-camera",
+    "orx-camera",
 //  "orx-chataigne",
     "orx-color",
     "orx-compositor",
 //  "orx-dnk3",
 //  "orx-easing",
 //  "orx-file-watcher",
-//  "orx-filter-extension",
     "orx-fx",
 //  "orx-glslify",
 //  "orx-gradient-descent",
-    "orx-git-archiver",
+//    "orx-git-archiver",
     "orx-gui",
     "orx-image-fit",
 //  "orx-integral-image",
@@ -36,7 +34,7 @@ val orxFeatures = setOf(
 //  "orx-mesh-generators",
 //  "orx-midi",
 //  "orx-minim",
-//  "orx-no-clear",
+    "orx-no-clear",
     "orx-noise",
 //  "orx-obj-loader",
     "orx-olive",
@@ -58,8 +56,8 @@ val orxFeatures = setOf(
 //  "orx-timer",
 //  "orx-triangulation",
 //  "orx-video-profiles",
-    null
-).filterNotNull()
+    "orx-view-box",
+)
 
 /** ## additional ORML features to be added to this project */
 val ormlFeatures = setOf<String>(
@@ -71,7 +69,7 @@ val ormlFeatures = setOf<String>(
 //    "orml-ssd",
 //    "orml-style-transfer",
 //    "orml-super-resolution",
-//    "orml-u2net"
+//    "orml-u2net",
 )
 
 /** ## additional OPENRNDR features to be added to this project */
@@ -86,6 +84,7 @@ val applicationLogging = Logging.FULL
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     java
     alias(libs.plugins.kotlin.jvm)
@@ -96,6 +95,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -105,6 +105,7 @@ dependencies {
 //    implementation(libs.csv)
 
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.slf4j.api)
     implementation(libs.kotlin.logging)
 
     when (applicationLogging) {
@@ -115,7 +116,8 @@ dependencies {
             runtimeOnly(libs.slf4j.simple)
         }
         Logging.FULL -> {
-            runtimeOnly(libs.log4j.slf4j)
+            runtimeOnly(libs.log4j.slf4j2)
+            runtimeOnly(libs.log4j.core)
             runtimeOnly(libs.jackson.databind)
             runtimeOnly(libs.jackson.json)
         }
@@ -126,8 +128,9 @@ dependencies {
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
-configure<JavaPluginConvention> {
+java {
     sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
@@ -136,14 +139,26 @@ tasks.withType<KotlinCompile> {
 // ------------------------------------------------------------------------------------------------------------------ //
 
 project.setProperty("mainClassName", applicationMainClass)
+
+application {
+    if (hasProperty("openrndr.application")) {
+        mainClass.set("${property("openrndr.application")}")
+    }
+}
+
 tasks {
     named<ShadowJar>("shadowJar") {
         manifest {
             attributes["Main-Class"] = applicationMainClass
+            attributes["Implementation-Version"] = project.version
         }
         minimize {
             exclude(dependency("org.openrndr:openrndr-gl3:.*"))
             exclude(dependency("org.jetbrains.kotlin:kotlin-reflect:.*"))
+            exclude(dependency("org.slf4j:slf4j-simple:.*"))
+            exclude(dependency("org.apache.logging.log4j:log4j-slf4j2-impl:.*"))
+            exclude(dependency("com.fasterxml.jackson.core:jackson-databind:.*"))
+            exclude(dependency("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:.*"))
         }
     }
     named<org.beryx.runtime.JPackageTask>("jpackage") {
@@ -162,7 +177,7 @@ tasks {
                         from("data") {
                             include("**/*")
                         }
-                        into("build/jpackage/openrndr-application.app/data")
+                        into("build/jpackage/openrndr-application.app/Contents/Resources/data")
                     }
                 }
             }
@@ -186,10 +201,13 @@ runtime {
     jpackage {
         imageName = "openrndr-application"
         skipInstaller = true
-        if (OperatingSystem.current() == OperatingSystem.MAC_OS) jvmArgs.add("-XstartOnFirstThread")
+        if (OperatingSystem.current() == OperatingSystem.MAC_OS) {
+            jvmArgs.add("-XstartOnFirstThread")
+            jvmArgs.add("-Duser.dir=${"$"}APPDIR/../Resources")
+        }
     }
     options.set(listOf("--strip-debug", "--compress", "1", "--no-header-files", "--no-man-pages"))
-    modules.set(listOf("jdk.unsupported", "java.management"))
+    modules.set(listOf("jdk.unsupported", "java.management", "java.desktop"))
 }
 
 // ------------------------------------------------------------------------------------------------------------------ //
@@ -237,10 +255,6 @@ class Openrndr {
     fun orxNatives(module: String) = "org.openrndr.extra:$module-natives-$os:$orxVersion"
 
     init {
-        repositories {
-            listOf(openrndrVersion, orxVersion, ormlVersion).any { it.contains("SNAPSHOT") }.ifTrue { mavenLocal() }
-            maven(url = "https://maven.openrndr.org")
-        }
         dependencies {
             runtimeOnly(openrndr("gl3"))
             runtimeOnly(openrndrNatives("gl3"))
@@ -251,6 +265,7 @@ class Openrndr {
             implementation(openrndr("animatable"))
             implementation(openrndr("extensions"))
             implementation(openrndr("filter"))
+            implementation(openrndr("dialogs"))
             if ("video" in openrndrFeatures) {
                 implementation(openrndr("ffmpeg"))
                 runtimeOnly(openrndrNatives("ffmpeg"))
@@ -268,3 +283,45 @@ class Openrndr {
     }
 }
 val openrndr = Openrndr()
+
+if (properties["openrndr.tasks"] == "true") {
+    task("create executable jar for $applicationMainClass") {
+        group = " \uD83E\uDD8C OPENRNDR"
+        dependsOn("jar")
+    }
+
+    task("run $applicationMainClass") {
+        group = " \uD83E\uDD8C OPENRNDR"
+        dependsOn("run")
+    }
+
+    task("create standalone executable for $applicationMainClass") {
+        group = " \uD83E\uDD8C OPENRNDR"
+        dependsOn("jpackageZip")
+    }
+
+    task("add IDE file scopes") {
+        group = " \uD83E\uDD8C OPENRNDR"
+        val scopesFolder = File("${project.projectDir}/.idea/scopes")
+        scopesFolder.mkdirs()
+
+        val files = listOf(
+            "Code" to "file:*.kt||file:*.frag||file:*.vert||file:*.glsl",
+            "Text" to "file:*.txt||file:*.md||file:*.xml||file:*.json",
+            "Gradle" to "file[*buildSrc*]:*/||file:*gradle.*||file:*.gradle||file:*/gradle-wrapper.properties||file:*.toml",
+            "Images" to "file:*.png||file:*.jpg||file:*.dds||file:*.exr"
+        )
+        files.forEach { (name, pattern) ->
+            val file = File(scopesFolder, "__$name.xml")
+            if (!file.exists()) {
+                file.writeText(
+                    """
+                    <component name="DependencyValidationManager">
+                      <scope name=" ★ $name" pattern="$pattern" />
+                    </component>
+                    """.trimIndent()
+                )
+            }
+        }
+    }
+}
