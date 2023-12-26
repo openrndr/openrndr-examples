@@ -15,22 +15,28 @@ val orxFeatures = setOf<String>(
 //  "orx-chataigne",
     "orx-color",
     "orx-compositor",
+//  "orx-compute-graph",
+//  "orx-compute-graph-nodes",
+    "orx-delegate-magic",
 //  "orx-dnk3",
 //  "orx-easing",
+//  "orx-expression-evaluator",
+    "orx-envelopes",
 //  "orx-file-watcher",
     "orx-fx",
-//  "orx-glslify",
+//  "orx-git-archiver",
 //  "orx-gradient-descent",
-//    "orx-git-archiver",
     "orx-gui",
+//  "orx-hash-grid",
     "orx-image-fit",
 //  "orx-integral-image",
 //  "orx-interval-tree",
     "orx-jumpflood",
 //  "orx-kdtree",
-//  "orx-keyframer",      
+//  "orx-keyframer",
 //  "orx-kinect-v1",
 //  "orx-kotlin-parser",
+//  "orx-marching-squares",
     "orx-mesh-generators",
 //  "orx-midi",
 //  "orx-minim",
@@ -43,6 +49,7 @@ val orxFeatures = setOf<String>(
     "orx-panel",
 //  "orx-parameters",
     "orx-poisson-fill",
+//  "orx-quadtree",
 //  "orx-rabbit-control",
 //  "orx-realsense2",
 //  "orx-runway",
@@ -51,11 +58,12 @@ val orxFeatures = setOf<String>(
     "orx-shapes",
 //  "orx-syphon",
 //  "orx-temporal-blur",
-//  "orx-tensorflow",    
+//  "orx-tensorflow",
 //  "orx-time-operators",
 //  "orx-timer",
 //  "orx-triangulation",
-//  "orx-video-profiles",
+//  "orx-turtle",
+    "orx-video-profiles",
     "orx-view-box",
 )
 
@@ -91,6 +99,7 @@ plugins {
     alias(libs.plugins.shadow)
     alias(libs.plugins.runtime)
     alias(libs.plugins.gitarchive.tomarkdown).apply(false)
+    alias(libs.plugins.versions)
 }
 
 repositories {
@@ -163,23 +172,16 @@ tasks {
     }
     named<org.beryx.runtime.JPackageTask>("jpackage") {
         doLast {
-            when (OperatingSystem.current()) {
-                OperatingSystem.WINDOWS, OperatingSystem.LINUX -> {
-                    copy {
-                        from("data") {
-                            include("**/*")
-                        }
-                        into("build/jpackage/openrndr-application/data")
-                    }
+            val destPath = if(OperatingSystem.current().isMacOsX)
+                "build/jpackage/openrndr-application.app/Contents/Resources/data"
+            else
+                "build/jpackage/openrndr-application/data"
+
+            copy {
+                from("data") {
+                    include("**/*")
                 }
-                OperatingSystem.MAC_OS -> {
-                    copy {
-                        from("data") {
-                            include("**/*")
-                        }
-                        into("build/jpackage/openrndr-application.app/Contents/Resources/data")
-                    }
-                }
+                into(destPath)
             }
         }
     }
@@ -189,7 +191,7 @@ tasks {
 
 tasks.register<Zip>("jpackageZip") {
     archiveFileName.set("openrndr-application.zip")
-    from("$buildDir/jpackage") {
+    from("${layout.buildDirectory.get()}/jpackage") {
         include("**/*")
     }
 }
@@ -201,7 +203,7 @@ runtime {
     jpackage {
         imageName = "openrndr-application"
         skipInstaller = true
-        if (OperatingSystem.current() == OperatingSystem.MAC_OS) {
+        if (OperatingSystem.current().isMacOsX) {
             jvmArgs.add("-XstartOnFirstThread")
             jvmArgs.add("-Duser.dir=${"$"}APPDIR/../Resources")
         }
@@ -218,6 +220,26 @@ tasks.register<org.openrndr.extra.gitarchiver.GitArchiveToMarkdown>("gitArchiveT
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
+tasks {
+    dependencyUpdates {
+        gradleReleaseChannel = "current"
+
+        val nonStableKeywords = listOf("alpha", "beta", "rc")
+
+        fun isNonStable(
+            version: String
+        ) = nonStableKeywords.any {
+            version.lowercase().contains(it)
+        }
+
+        rejectVersionIf {
+            isNonStable(candidate.version) && !isNonStable(currentVersion)
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------------------------------------------ //
+
 class Openrndr {
     val openrndrVersion = libs.versions.openrndr.get()
     val orxVersion = libs.versions.orx.get()
@@ -226,6 +248,8 @@ class Openrndr {
     // choices are "orx-tensorflow-gpu", "orx-tensorflow"
     val orxTensorflowBackend = "orx-tensorflow"
 
+    val currArch = DefaultNativePlatform("current").architecture.name
+    val currOs = OperatingSystem.current()
     val os = if (project.hasProperty("targetPlatform")) {
         val supportedPlatforms = setOf("windows", "macos", "linux-x64", "linux-arm64")
         val platform: String = project.property("targetPlatform") as String
@@ -234,18 +258,18 @@ class Openrndr {
         } else {
             platform
         }
-    } else when (OperatingSystem.current()) {
-        OperatingSystem.WINDOWS -> "windows"
-        OperatingSystem.MAC_OS -> when (val h = DefaultNativePlatform("current").architecture.name) {
+    } else when {
+        currOs.isWindows -> "windows"
+        currOs.isMacOsX -> when (currArch) {
             "aarch64", "arm-v8" -> "macos-arm64"
             else -> "macos"
         }
-        OperatingSystem.LINUX -> when (val h = DefaultNativePlatform("current").architecture.name) {
+        currOs.isLinux -> when (currArch) {
             "x86-64" -> "linux-x64"
             "aarch64" -> "linux-arm64"
-            else -> throw IllegalArgumentException("architecture not supported: $h")
+            else -> throw IllegalArgumentException("architecture not supported: $currArch")
         }
-        else -> throw IllegalArgumentException("os not supported")
+        else -> throw IllegalArgumentException("os not supported: ${currOs.name}")
     }
 
     fun orx(module: String) = "org.openrndr.extra:$module:$orxVersion"
@@ -287,7 +311,7 @@ val openrndr = Openrndr()
 if (properties["openrndr.tasks"] == "true") {
     task("create executable jar for $applicationMainClass") {
         group = " \uD83E\uDD8C OPENRNDR"
-        dependsOn("jar")
+        dependsOn("shadowJar")
     }
 
     task("run $applicationMainClass") {
@@ -309,7 +333,7 @@ if (properties["openrndr.tasks"] == "true") {
             "Code" to "file:*.kt||file:*.frag||file:*.vert||file:*.glsl",
             "Text" to "file:*.txt||file:*.md||file:*.xml||file:*.json",
             "Gradle" to "file[*buildSrc*]:*/||file:*gradle.*||file:*.gradle||file:*/gradle-wrapper.properties||file:*.toml",
-            "Images" to "file:*.png||file:*.jpg||file:*.dds||file:*.exr"
+            "Media" to "file:*.png||file:*.jpg||file:*.dds||file:*.exr||file:*.mp3||file:*.wav||file:*.mp4||file:*.mov"
         )
         files.forEach { (name, pattern) ->
             val file = File(scopesFolder, "__$name.xml")
