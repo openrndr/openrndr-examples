@@ -14,14 +14,17 @@ val orxFeatures = setOf<String>(
     "orx-camera",
 //  "orx-chataigne",
     "orx-color",
+//  "orx-composition",
     "orx-compositor",
 //  "orx-compute-graph",
 //  "orx-compute-graph-nodes",
     "orx-delegate-magic",
 //  "orx-dnk3",
 //  "orx-easing",
-//  "orx-expression-evaluator",
     "orx-envelopes",
+//  "orx-expression-evaluator",
+//  "orx-fcurve",
+//  "orx-fft",
 //  "orx-file-watcher",
     "orx-fx",
 //  "orx-git-archiver",
@@ -49,6 +52,7 @@ val orxFeatures = setOf<String>(
     "orx-panel",
 //  "orx-parameters",
     "orx-poisson-fill",
+//  "orx-property-watchers",
 //  "orx-quadtree",
 //  "orx-rabbit-control",
 //  "orx-realsense2",
@@ -56,9 +60,11 @@ val orxFeatures = setOf<String>(
     "orx-shade-styles",
 //  "orx-shader-phrases",
     "orx-shapes",
+//  "orx-svg",
 //  "orx-syphon",
 //  "orx-temporal-blur",
 //  "orx-tensorflow",
+//  "orx-text-writer",
 //  "orx-time-operators",
 //  "orx-timer",
 //  "orx-triangulation",
@@ -333,7 +339,7 @@ if (properties["openrndr.tasks"] == "true") {
             "Code" to "file:*.kt||file:*.frag||file:*.vert||file:*.glsl",
             "Text" to "file:*.txt||file:*.md||file:*.xml||file:*.json",
             "Gradle" to "file[*buildSrc*]:*/||file:*gradle.*||file:*.gradle||file:*/gradle-wrapper.properties||file:*.toml",
-            "Media" to "file:*.png||file:*.jpg||file:*.dds||file:*.exr||file:*.mp3||file:*.wav||file:*.mp4||file:*.mov"
+            "Media" to "file:*.png||file:*.jpg||file:*.dds||file:*.exr||file:*.mp3||file:*.wav||file:*.mp4||file:*.mov||file:*.svg"
         )
         files.forEach { (name, pattern) ->
             val file = File(scopesFolder, "__$name.xml")
