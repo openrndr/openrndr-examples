@@ -21,8 +21,8 @@ If you prefer to run the programs from the command line you can type commands li
 
 ```
 # Linux / Mac
-./gradlew run -Popenrndr.application=examples.08_Animation.C100_InteractiveAnimations000Kt
+./gradlew run -Popenrndr.application=examples.50_Animation.C100_InteractiveAnimations000Kt
 
 # Windows
-gradlew.bat run -Popenrndr.application=examples.07_Interaction.C140_UserInterfaces000Kt
+gradlew.bat run -Popenrndr.application=examples.40_Interaction.C140_UserInterfaces000Kt
 ```

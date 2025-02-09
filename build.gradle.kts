@@ -14,7 +14,6 @@ val orxFeatures = setOf<String>(
     "orx-camera",
 //  "orx-chataigne",
     "orx-color",
-//  "orx-composition",
     "orx-compositor",
 //  "orx-compute-graph",
 //  "orx-compute-graph-nodes",
@@ -23,8 +22,6 @@ val orxFeatures = setOf<String>(
 //  "orx-easing",
     "orx-envelopes",
 //  "orx-expression-evaluator",
-//  "orx-fcurve",
-//  "orx-fft",
 //  "orx-file-watcher",
     "orx-fx",
 //  "orx-git-archiver",
@@ -34,13 +31,13 @@ val orxFeatures = setOf<String>(
     "orx-image-fit",
 //  "orx-integral-image",
 //  "orx-interval-tree",
-    "orx-jumpflood",
+//  "orx-jumpflood",
 //  "orx-kdtree",
 //  "orx-keyframer",
 //  "orx-kinect-v1",
 //  "orx-kotlin-parser",
 //  "orx-marching-squares",
-    "orx-mesh-generators",
+//  "orx-mesh-generators",
 //  "orx-midi",
 //  "orx-minim",
     "orx-no-clear",
@@ -51,7 +48,7 @@ val orxFeatures = setOf<String>(
 //  "orx-palette",
     "orx-panel",
 //  "orx-parameters",
-    "orx-poisson-fill",
+//  "orx-poisson-fill",
 //  "orx-property-watchers",
 //  "orx-quadtree",
 //  "orx-rabbit-control",
@@ -60,11 +57,9 @@ val orxFeatures = setOf<String>(
     "orx-shade-styles",
 //  "orx-shader-phrases",
     "orx-shapes",
-//  "orx-svg",
 //  "orx-syphon",
 //  "orx-temporal-blur",
 //  "orx-tensorflow",
-//  "orx-text-writer",
 //  "orx-time-operators",
 //  "orx-timer",
 //  "orx-triangulation",
@@ -174,6 +169,7 @@ tasks {
             exclude(dependency("org.apache.logging.log4j:log4j-slf4j2-impl:.*"))
             exclude(dependency("com.fasterxml.jackson.core:jackson-databind:.*"))
             exclude(dependency("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:.*"))
+            exclude(dependency("org.bytedeco:.*"))
         }
     }
     named<org.beryx.runtime.JPackageTask>("jpackage") {
