@@ -48,7 +48,7 @@ val orxFeatures = setOf<String>(
 //  "orx-palette",
     "orx-panel",
 //  "orx-parameters",
-//  "orx-poisson-fill",
+    "orx-poisson-fill",
 //  "orx-property-watchers",
 //  "orx-quadtree",
 //  "orx-rabbit-control",
