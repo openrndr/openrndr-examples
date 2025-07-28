@@ -19,7 +19,7 @@ fun main() {
     application {
         program {
             val gradientBackground = drawImage(width, height) {
-                // Draw anything here, for example a radial gradient.
+                // Draw anything here, for example, a radial gradient.
                 drawer.shadeStyle = RadialGradient(ColorRGBa.WHITE, ColorRGBa.PINK)
                 val r = Rectangle.fromCenter(drawer.bounds.center, 800.0, 800.0)
                 drawer.rectangle(r)

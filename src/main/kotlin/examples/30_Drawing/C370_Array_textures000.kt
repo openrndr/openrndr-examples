@@ -3,11 +3,12 @@ package examples.`30_Drawing`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.draw.*
-
+import org.openrndr.draw.arrayTexture
+import org.openrndr.draw.colorBuffer
+import org.openrndr.draw.isolatedWithTarget
+import org.openrndr.draw.renderTarget
 import org.openrndr.math.mod
 import org.openrndr.shape.Rectangle
-
 import java.nio.ByteBuffer
 import kotlin.math.cos
 import kotlin.math.sin

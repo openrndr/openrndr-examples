@@ -16,7 +16,7 @@ fun main() {
                 drawer.fill = ColorRGBa.PINK
                 drawer.stroke = null
             
-                // -- translate to center of screen
+                // -- translate to the screen center
                 drawer.translate(width / 2.0, height / 2.0)
             
                 drawer.rotate(seconds * 60.0)

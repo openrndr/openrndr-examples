@@ -3,7 +3,10 @@ package examples.`80_ORX`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.draw.*
+import org.openrndr.draw.Cursor
+import org.openrndr.draw.loadFont
+import org.openrndr.draw.loadImage
+import org.openrndr.draw.tint
 import org.openrndr.extra.compositor.*
 import org.openrndr.extra.fx.blend.Add
 import org.openrndr.extra.fx.blend.Normal
@@ -36,7 +39,7 @@ fun main() {
                         drawer.circle(width / 2.0, height / 2.0 + cos(seconds * 2) * 100.0, 100.0)
                     }
                     post(ApproximateGaussianBlur()) {
-                        // -- this is actually a function that is called for every draw
+                        // -- this is actually a function called for every draw
                         window = 25
                         sigma = cos(seconds) * 10.0 + 10.01
                     }

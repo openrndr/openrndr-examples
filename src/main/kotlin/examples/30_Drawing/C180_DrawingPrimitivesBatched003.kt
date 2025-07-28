@@ -6,10 +6,10 @@ import org.openrndr.color.ColorRGBa
 import org.openrndr.color.rgb
 import org.openrndr.draw.circleBatch
 import org.openrndr.draw.rectangleBatch
-import org.openrndr.shape.Circle
 import org.openrndr.extra.noise.Random
 import org.openrndr.math.Polar
 import org.openrndr.math.Vector2
+import org.openrndr.shape.Circle
 import org.openrndr.shape.Rectangle
 
 fun main() {

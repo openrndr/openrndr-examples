@@ -2,7 +2,10 @@
 package examples.`90_Advanced_Topics`
 
 import org.openrndr.application
-import org.openrndr.draw.*
+import org.openrndr.draw.DrawPrimitive
+import org.openrndr.draw.Shader
+import org.openrndr.draw.vertexBuffer
+import org.openrndr.draw.vertexFormat
 import org.openrndr.internal.Driver
 import org.openrndr.math.Vector3
 

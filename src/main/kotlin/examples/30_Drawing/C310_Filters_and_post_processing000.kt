@@ -15,7 +15,7 @@ fun main() {
             height = 578
         }
         program {
-            // -- create offscreen render target
+            // -- create an offscreen render target
             val offscreen = renderTarget(width, height) {
                 colorBuffer()
                 depthBuffer()
@@ -23,7 +23,7 @@ fun main() {
             // -- create blur filter
             val blur = BoxBlur()
         
-            // -- create colorbuffer to hold blur results
+            // -- create a colorbuffer to hold the blur results
             val blurred = colorBuffer(width, height)
         
     

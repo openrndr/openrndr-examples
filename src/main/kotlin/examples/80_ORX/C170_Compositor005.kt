@@ -3,7 +3,10 @@ package examples.`80_ORX`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.draw.*
+import org.openrndr.draw.Cursor
+import org.openrndr.draw.loadFont
+import org.openrndr.draw.loadImage
+import org.openrndr.draw.tint
 import org.openrndr.extra.compositor.*
 import org.openrndr.extra.fx.blend.Add
 import org.openrndr.extra.fx.blend.Normal

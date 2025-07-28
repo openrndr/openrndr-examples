@@ -17,7 +17,7 @@ import kotlin.math.sin
 fun main() {
     application {
         program {
-            // -- create a contour from Rectangle object
+            // -- create a contour from a Rectangle object
             val c = Rectangle(100.0, 100.0, width - 200.0, height - 200.0).contour.reversed
         
             extend {
