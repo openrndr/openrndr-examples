@@ -7,10 +7,9 @@ import org.openrndr.color.rgb
 import org.openrndr.draw.font.loadFace
 import org.openrndr.draw.loadFont
 import org.openrndr.extra.shapes.rectify.rectified
+import org.openrndr.extra.textwriter.writer
 import org.openrndr.shape.LineSegment
-
 import org.openrndr.shape.Rectangle
-import org.openrndr.writer
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -18,7 +17,7 @@ fun main() {
     application {
         program {
             val face = loadFace("data/fonts/default.otf")
-            val shape = face.glyphForCharacter(character = '8').shape(size = 750.0)
+            val shape = face.glyphForCharacter(character = '8').shape(scale = 1.0)
         
             extend {
                 drawer.clear(ColorRGBa.WHITE)

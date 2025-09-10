@@ -4,6 +4,7 @@ package examples.`90_Advanced_Topics`
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.*
+import org.openrndr.draw.font.BufferAccess
 import java.io.File
 
 fun main() {
@@ -12,9 +13,9 @@ fun main() {
             val cs = ComputeShader.fromCode(File("data/compute-shaders/fill.cs").readText(), "cs1")
         
             val tempBuffer = loadImage("data/images/cheeta.jpg")
-            val inputBuffer = colorBuffer(width, height)
+            val inputBuffer = colorBuffer(width, height, type = ColorType.UINT8)
             tempBuffer.copyTo(inputBuffer)
-            val outputBuffer = colorBuffer(width, height)
+            val outputBuffer = colorBuffer(width, height, type = ColorType.UINT8)
         
             extend {
                 cs.uniform("fillColor", ColorRGBa.PINK.shade(0.1))

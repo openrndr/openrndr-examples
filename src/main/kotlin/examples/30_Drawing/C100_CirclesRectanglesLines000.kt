@@ -8,7 +8,9 @@ import org.openrndr.math.Vector2
 
 fun main() {
     application {
-        configure {}
+        configure {
+            height = 300
+        }
         program {
             extend {
                 drawer.clear(ColorRGBa.PINK)
@@ -19,13 +21,13 @@ fun main() {
                 drawer.strokeWeight = 1.0
                 drawer.circle(width / 6.0, height / 2.0, width / 8.0)
             
-                // -- draw a circle without fill, but with black stroke
+                // -- draw a circle without a fill, but with black stroke
                 drawer.fill = null
                 drawer.stroke = ColorRGBa.BLACK
                 drawer.strokeWeight = 1.0
                 drawer.circle(width / 6.0 + width / 3.0, height / 2.0, width / 8.0)
             
-                // -- draw a circle with white fill, but without stroke
+                // -- draw a circle with white fill, but without a stroke
                 drawer.fill = ColorRGBa.WHITE
                 drawer.stroke = null
                 drawer.strokeWeight = 1.0

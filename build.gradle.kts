@@ -1,7 +1,8 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.gradle.internal.os.OperatingSystem
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 group = "org.openrndr.examples"
 version = "1.0.0"
@@ -10,10 +11,12 @@ val applicationMainClass = "TemplateProgramKt"
 
 /**  ## additional ORX features to be added to this project */
 val orxFeatures = setOf<String>(
+//  "orx-axidraw",
 //  "orx-boofcv",
     "orx-camera",
 //  "orx-chataigne",
     "orx-color",
+//  "orx-composition",
     "orx-compositor",
 //  "orx-compute-graph",
 //  "orx-compute-graph-nodes",
@@ -22,6 +25,8 @@ val orxFeatures = setOf<String>(
 //  "orx-easing",
     "orx-envelopes",
 //  "orx-expression-evaluator",
+//  "orx-fcurve",
+//  "orx-fft",
 //  "orx-file-watcher",
     "orx-fx",
 //  "orx-git-archiver",
@@ -37,6 +42,7 @@ val orxFeatures = setOf<String>(
 //  "orx-kinect-v1",
 //  "orx-kotlin-parser",
 //  "orx-marching-squares",
+//  "orx-math",
     "orx-mesh-generators",
 //  "orx-midi",
 //  "orx-minim",
@@ -57,9 +63,11 @@ val orxFeatures = setOf<String>(
     "orx-shade-styles",
 //  "orx-shader-phrases",
     "orx-shapes",
+    "orx-svg",
 //  "orx-syphon",
 //  "orx-temporal-blur",
 //  "orx-tensorflow",
+//  "orx-text-writer",
 //  "orx-time-operators",
 //  "orx-timer",
 //  "orx-triangulation",
@@ -101,6 +109,7 @@ plugins {
     alias(libs.plugins.runtime)
     alias(libs.plugins.gitarchive.tomarkdown).apply(false)
     alias(libs.plugins.versions)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 repositories {
@@ -111,20 +120,28 @@ repositories {
 dependencies {
 
 //    implementation(libs.jsoup)
-//    implementation(libs.gson)
 //    implementation(libs.csv)
 
+    /* ORSL dependencies */
+
+//    implementation(libs.orsl.shader.generator)
+//    implementation(libs.orsl.extension.color)
+//    implementation(libs.orsl.extension.easing)
+//    implementation(libs.orsl.extension.gradient)
+//    implementation(libs.orsl.extension.noise)
+//    implementation(libs.orsl.extension.pbr)
+//    implementation(libs.orsl.extension.raymarching)
+//    implementation(libs.orsl.extension.sdf)
+
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization.core)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.slf4j.api)
     implementation(libs.kotlin.logging)
 
     when (applicationLogging) {
-        Logging.NONE -> {
-            runtimeOnly(libs.slf4j.nop)
-        }
-        Logging.SIMPLE -> {
-            runtimeOnly(libs.slf4j.simple)
-        }
+        Logging.NONE -> runtimeOnly(libs.slf4j.nop)
+        Logging.SIMPLE -> runtimeOnly(libs.slf4j.simple)
         Logging.FULL -> {
             runtimeOnly(libs.log4j.slf4j2)
             runtimeOnly(libs.log4j.core)
@@ -139,21 +156,24 @@ dependencies {
 // ------------------------------------------------------------------------------------------------------------------ //
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+kotlin {
+    compilerOptions {
+        languageVersion = KotlinVersion.KOTLIN_2_0
+        apiVersion = KotlinVersion.KOTLIN_2_0
+        jvmTarget = JvmTarget.JVM_17
+    }
 }
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
-project.setProperty("mainClassName", applicationMainClass)
-
 application {
-    if (hasProperty("openrndr.application")) {
-        mainClass.set("${property("openrndr.application")}")
-    }
+    mainClass = if (hasProperty("openrndr.application"))
+        "${property("openrndr.application")}"
+    else
+        applicationMainClass
 }
 
 tasks {
@@ -172,34 +192,33 @@ tasks {
             exclude(dependency("org.bytedeco:.*"))
         }
     }
+}
+
+// ------------------------------------------------------------------------------------------------------------------ //
+
+tasks {
     named<org.beryx.runtime.JPackageTask>("jpackage") {
         doLast {
-            val destPath = if(OperatingSystem.current().isMacOsX)
+            val destPath = if (OperatingSystem.current().isMacOsX)
                 "build/jpackage/openrndr-application.app/Contents/Resources/data"
             else
                 "build/jpackage/openrndr-application/data"
 
             copy {
-                from("data") {
-                    include("**/*")
-                }
+                from("data") { include("**/*") }
                 into(destPath)
             }
         }
     }
-}
 
-// ------------------------------------------------------------------------------------------------------------------ //
-
-tasks.register<Zip>("jpackageZip") {
-    archiveFileName.set("openrndr-application.zip")
-    from("${layout.buildDirectory.get()}/jpackage") {
-        include("**/*")
+    register<Zip>("jpackageZip") {
+        archiveFileName = "openrndr-application.zip"
+        from("${layout.buildDirectory.get()}/jpackage") {
+            include("**/*")
+        }
+        dependsOn("jpackage")
     }
 }
-tasks.findByName("jpackageZip")?.dependsOn("jpackage")
-
-// ------------------------------------------------------------------------------------------------------------------ //
 
 runtime {
     jpackage {
@@ -210,14 +229,16 @@ runtime {
             jvmArgs.add("-Duser.dir=${"$"}APPDIR/../Resources")
         }
     }
-    options.set(listOf("--strip-debug", "--compress", "1", "--no-header-files", "--no-man-pages"))
-    modules.set(listOf("jdk.unsupported", "java.management", "java.desktop"))
+    options = listOf("--strip-debug", "--compress", "1", "--no-header-files", "--no-man-pages")
+    modules = listOf("jdk.unsupported", "java.management", "java.desktop")
 }
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
-tasks.register<org.openrndr.extra.gitarchiver.GitArchiveToMarkdown>("gitArchiveToMarkDown") {
-    historySize.set(20)
+tasks {
+    register<org.openrndr.extra.gitarchiver.GitArchiveToMarkdown>("gitArchiveToMarkDown") {
+        historySize = 20
+    }
 }
 
 // ------------------------------------------------------------------------------------------------------------------ //
@@ -228,9 +249,7 @@ tasks {
 
         val nonStableKeywords = listOf("alpha", "beta", "rc")
 
-        fun isNonStable(
-            version: String
-        ) = nonStableKeywords.any {
+        fun isNonStable(version: String) = nonStableKeywords.any {
             version.lowercase().contains(it)
         }
 
@@ -266,11 +285,13 @@ class Openrndr {
             "aarch64", "arm-v8" -> "macos-arm64"
             else -> "macos"
         }
+
         currOs.isLinux -> when (currArch) {
             "x86-64" -> "linux-x64"
             "aarch64" -> "linux-arm64"
             else -> throw IllegalArgumentException("architecture not supported: $currArch")
         }
+
         else -> throw IllegalArgumentException("os not supported: ${currOs.name}")
     }
 
@@ -287,7 +308,6 @@ class Openrndr {
             implementation(openrndr("openal"))
             runtimeOnly(openrndrNatives("openal"))
             implementation(openrndr("application"))
-            implementation(openrndr("svg"))
             implementation(openrndr("animatable"))
             implementation(openrndr("extensions"))
             implementation(openrndr("filter"))
@@ -308,25 +328,26 @@ class Openrndr {
         }
     }
 }
+
 val openrndr = Openrndr()
 
 if (properties["openrndr.tasks"] == "true") {
-    task("create executable jar for $applicationMainClass") {
+    tasks.register("create executable jar for $applicationMainClass") {
         group = " \uD83E\uDD8C OPENRNDR"
         dependsOn("shadowJar")
     }
 
-    task("run $applicationMainClass") {
+    tasks.register("run $applicationMainClass") {
         group = " \uD83E\uDD8C OPENRNDR"
         dependsOn("run")
     }
 
-    task("create standalone executable for $applicationMainClass") {
+    tasks.register("create standalone executable for $applicationMainClass") {
         group = " \uD83E\uDD8C OPENRNDR"
         dependsOn("jpackageZip")
     }
 
-    task("add IDE file scopes") {
+    tasks.register("add IDE file scopes") {
         group = " \uD83E\uDD8C OPENRNDR"
         val scopesFolder = File("${project.projectDir}/.idea/scopes")
         scopesFolder.mkdirs()

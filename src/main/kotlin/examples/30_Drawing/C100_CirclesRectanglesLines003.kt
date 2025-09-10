@@ -8,6 +8,9 @@ import org.openrndr.math.Vector2
 
 fun main() {
     application {
+        configure {
+            height = 300
+        }
         program {
             extend {
                 drawer.clear(ColorRGBa.PINK)

@@ -3,10 +3,9 @@ package examples.`80_ORX`
 
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
-import org.openrndr.draw.Cursor
 import org.openrndr.draw.loadFont
 import org.openrndr.draw.loadImage
-import org.openrndr.draw.tint
+import org.openrndr.extra.color.colormatrix.tint
 import org.openrndr.extra.compositor.*
 import org.openrndr.extra.fx.blend.Add
 import org.openrndr.extra.fx.blend.Normal
@@ -14,8 +13,9 @@ import org.openrndr.extra.fx.blur.ApproximateGaussianBlur
 import org.openrndr.extra.fx.distort.HorizontalWave
 import org.openrndr.extra.fx.distort.VerticalWave
 import org.openrndr.extra.fx.shadow.DropShadow
+import org.openrndr.extra.textwriter.Cursor
+import org.openrndr.extra.textwriter.writer
 import org.openrndr.shape.Rectangle
-import org.openrndr.writer
 import kotlin.math.cos
 import kotlin.math.sin
 

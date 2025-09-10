@@ -1,12 +1,13 @@
 
 package examples.`30_Drawing`
 
+import offset.offset
 import org.openrndr.application
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.LineJoin
 import org.openrndr.draw.loadFont
-import org.openrndr.extra.shapes.Pulley
-import org.openrndr.extra.shapes.hobbyCurve
+import org.openrndr.extra.shapes.hobbycurve.hobbyCurve
+import org.openrndr.extra.shapes.primitives.Pulley
 import org.openrndr.extra.shapes.rectify.rectified
 import org.openrndr.math.Vector2
 import org.openrndr.math.transforms.transform
@@ -54,9 +55,9 @@ fun main() {
                 drawer.text("Cubic", pts[8] + off2)
             
                 drawer.stroke = ColorRGBa.BLACK
-                drawer.segment(Segment(pts[0], pts[1]))
-                drawer.segment(Segment(pts[2], pts[3], pts[4]))
-                drawer.segment(Segment(pts[5], pts[6], pts[7], pts[8]))
+                drawer.segment(Segment2D(pts[0], pts[1]))
+                drawer.segment(Segment2D(pts[2], pts[3], pts[4]))
+                drawer.segment(Segment2D(pts[5], pts[6], pts[7], pts[8]))
             }
         }
     }

@@ -3,6 +3,8 @@ build
 out
 .idea
 .gradle
+.kotlin
+.lwjgl
 video/
 screenshots/
 gui-parameters/

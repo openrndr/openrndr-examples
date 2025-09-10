@@ -19,13 +19,14 @@ import kotlin.math.abs
 fun main() {
     application {
         program {
+            val cb = colorBuffer(width, height)
+            val vn = ValueNoise()
             extend {
-                drawer.fill = ColorRGBa.PINK
-                drawer.stroke = null
-                drawer.translate(width / 2.0, height / 2.00)
-                for (i in 0 until 1000) {
-                    drawer.circle(Vector2.uniformRing(150.0, 250.0), 10.0)
-                }
+                vn.scale = Vector2.ONE * 4.0
+                vn.gain = Vector4.ONE * 0.5
+                vn.octaves = 8
+                vn.apply(emptyArray(), cb)
+                drawer.image(cb)
             }
         }
     }
