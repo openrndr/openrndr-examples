@@ -6,6 +6,8 @@ import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.*
 import org.openrndr.extra.camera.OrbitalCamera
 import org.openrndr.extra.meshgenerators.sphereMesh
+import org.openrndr.extra.shapes.hobbycurve.hobbyCurve
+import org.openrndr.math.Vector2
 import org.openrndr.math.Vector3
 import org.openrndr.shape.Circle
 import kotlin.math.cos
@@ -14,36 +16,30 @@ import kotlin.math.sin
 fun main() {
     application {
         program {
+            val sphere = sphereMesh(32, 32, 0.6)
             val style = shadeStyle {
-                // Define the `random` function and declare a `c`
-                // variable to pass to the fragment shader.
-                vertexPreamble = """
-                        float random(vec2 st) {
-                            return fract(sin(dot(st.xy,
-                                vec2(12.9898, 78.233))) * 43758.5453123);
-                        }
-                        out vec3 c;
-                    """.trimIndent()
-            
-                // Calculate the value of `c` per vertex.
-                // It will get interpolated by the GPU.
                 vertexTransform = """
-                        c.r = random(x_position.xy);
-                        c.g = random(x_position.yx);
-                        c.b = random(x_position.xy + 1.0);
+                        vec3 p = x_position * 8.0 + p_seconds;
+                        // displace the vertices
+                        x_position.x += sin(p.y) * 0.1;
+                        x_position.y += sin(p.z) * 0.1;
+                        x_position.z += sin(p.x) * 0.1;
                     """.trimIndent()
             
-                // Declare a `c` variable to receive from the vertex shader.
-                fragmentPreamble = "in vec3 c;"
-                // Use the value of `c` to set the color of a pixel.
-                fragmentTransform = "x_fill.rgb = c;"
+                fragmentTransform = """
+                        vec3 c = sin(v_worldPosition) * 0.5 + 0.5;
+                        x_fill = vec4(c, 1.0);
+                    """.trimIndent()
             }
+        
+            val camera = OrbitalCamera(Vector3.UNIT_Z, Vector3.ZERO)
+        
+            extend(camera)
             extend {
+                camera.rotate(0.2, 0.0)
+                style.parameter("seconds", seconds)
                 drawer.shadeStyle = style
-                repeat(7) {
-                    // Notice how we do not set `drawer.fill`.
-                    drawer.rectangle(50.0 + it * 77, 50.0, 70.0, 390.0)
-                }
+                drawer.vertexBuffer(sphere, DrawPrimitive.LINES)
             }
         }
     }
