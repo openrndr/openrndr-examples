@@ -32,14 +32,14 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = CMYKHalftone()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 // -- need a white background because the filter introduces transparent areas
                 drawer.clear(ColorRGBa.WHITE)
                 filter.dotSize = 1.2
                 filter.scale = cos(seconds) * 2.0 + 6.0
                 filter.apply(image, filtered)
-            
+    
                 drawer.image(filtered)
             }
         }

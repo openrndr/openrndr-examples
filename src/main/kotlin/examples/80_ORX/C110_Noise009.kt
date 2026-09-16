@@ -11,10 +11,11 @@ import org.openrndr.extra.noise.filters.HashNoise
 import org.openrndr.extra.noise.filters.SimplexNoise3D
 import org.openrndr.extra.noise.filters.SpeckleNoise
 import org.openrndr.extra.noise.filters.ValueNoise
+import org.openrndr.extra.noise.primitives.random
 import org.openrndr.math.Vector2
 import org.openrndr.math.Vector3
 import org.openrndr.math.Vector4
-import kotlin.math.abs
+import kotlin.math.absoluteValue
 
 fun main() {
     application {

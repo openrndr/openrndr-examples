@@ -17,9 +17,9 @@ import kotlin.math.cos
 fun main() {
     application {
         program {
-        
+    
             val image = loadImage("data/images/cheeta.jpg")
-        
+    
             val c = compose {
                 // -- make sure accumulation is done in float32
                 colorType = ColorType.FLOAT32
@@ -54,7 +54,8 @@ fun main() {
                 }
             }
             extend {
-                c.draw(drawer)
+                // FIXME
+                //c.draw(drawer)
             }
         }
     }

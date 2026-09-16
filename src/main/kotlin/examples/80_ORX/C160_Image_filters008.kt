@@ -32,7 +32,7 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = Sepia()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 filter.amount = cos(seconds * 2) * 0.5 + 0.5
                 filter.apply(image, filtered)

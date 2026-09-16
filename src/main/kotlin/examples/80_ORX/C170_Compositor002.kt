@@ -26,9 +26,13 @@ fun main() {
                 draw {
                     drawer.fill = ColorRGBa.PINK
                     drawer.stroke = null
-                    drawer.circle(width / 2.0 + sin(seconds * 2) * 100.0, height / 2.0, 175.0)
+                    drawer.circle(
+                        width / 2.0 + sin(seconds * 2) * 100.0,
+                        height / 2.0,
+                        175.0
+                    )
                 }
-            
+    
                 layer {
                     blend(Add()) {
                         clip = true
@@ -36,7 +40,11 @@ fun main() {
                     draw {
                         drawer.fill = ColorRGBa.PINK
                         drawer.stroke = null
-                        drawer.circle(width / 2.0, height / 2.0 + cos(seconds * 2) * 100.0, 100.0)
+                        drawer.circle(
+                            width / 2.0,
+                            height / 2.0 + cos(seconds * 2) * 100.0,
+                            100.0
+                        )
                     }
                     post(ApproximateGaussianBlur()) {
                         // -- this is actually a function called for every draw

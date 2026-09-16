@@ -32,7 +32,7 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = ChromaticAberration()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 filter.aberrationFactor = cos(seconds * 2) * 10.0
                 filter.apply(image, filtered)

@@ -30,18 +30,20 @@ fun main() {
                     drawer.fill = ColorRGBa.PINK.opacify(0.5)
                     drawer.stroke = null
                     for (i in 0 until 20) {
-                        drawer.circle(cos(seconds * 5.0 + i) * 256 + width / 2.0, sin(i + seconds * 6.32) * 256 + height / 2.0, 100.0)
+                        drawer.circle(
+                            cos(seconds * 5.0 + i) * 256 + width / 2.0,
+                            sin(i + seconds * 6.32) * 256 + height / 2.0,
+                            100.0
+                        )
                     }
                 }
-            
-                val layers = (0 until at.layers).map {
-                    (index - it).mod(at.layers)
-                }
+    
+                val layers = (0 until at.layers).map { (index - it).mod(at.layers) }
                 val rectangles = (0 until at.layers).map {
                     val span = Rectangle(0.0, it * 5.0, at.width * 1.0, 5.0)
                     span to span
                 }
-            
+    
                 drawer.image(at, layers, rectangles)
                 index++
             }

@@ -32,12 +32,12 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = BlockRepeat()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 filter.sourceScale = seconds / 5.0
                 filter.blockWidth = cos(seconds) * 0.3 + 0.4
                 filter.blockHeight = sin(seconds) * 0.3 + 0.4
-            
+    
                 filter.apply(image, filtered)
                 drawer.image(filtered)
             }

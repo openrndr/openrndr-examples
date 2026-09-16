@@ -13,7 +13,7 @@ fun main() {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-        
+    
             extend {
                 val source = Rectangle(0.0, 0.0, 320.0, 240.0)
                 val target = Rectangle(160.0, 120.0, 320.0, 240.0)

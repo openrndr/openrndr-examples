@@ -21,7 +21,7 @@ fun main() {
                 drawer.translate(seconds * 100.0, 0.0)
                 // set up vertical translation
                 drawer.translate(0.0, cos(seconds * Math.PI * 2.0) * 50.00)
-            
+    
                 drawer.rectangle(-50.0, -50.0, 100.0, 100.00)
             }
         }

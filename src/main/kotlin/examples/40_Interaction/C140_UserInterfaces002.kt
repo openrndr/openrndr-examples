@@ -17,7 +17,8 @@ fun main() {
                 layout {
                     button {
                         label = "Click me "
-                        events.clicked.listen {// -- do something with the clicked event
+                        events.clicked.listen {
+                            // -- do something with the clicked event
                         }
                     }
                 }

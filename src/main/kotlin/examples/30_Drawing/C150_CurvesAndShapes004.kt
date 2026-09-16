@@ -18,11 +18,22 @@ import kotlin.math.sin
 fun main() {
     application {
         program {
-            val segments = listOf(Segment2D(Vector2(10.0, 100.0), Vector2(200.0, 80.0)), // Linear Bézier Segment
-            Segment2D(Vector2(200.0, 80.0), Vector2(250.0, 280.0), Vector2(400.0, 80.0)), // Quadratic Bézier segment
-            Segment2D(Vector2(400.0, 80.0), Vector2(450.0, 180.0), Vector2(500.0, 0.0), Vector2(630.0, 80.0))) // Cubic Bézier segment
+            val segments = listOf(
+                Segment2D(Vector2(10.0, 100.0), Vector2(200.0, 80.0)), // Linear Bézier Segment
+                Segment2D(
+                    Vector2(200.0, 80.0),
+                    Vector2(250.0, 280.0),
+                    Vector2(400.0, 80.0)
+                ), // Quadratic Bézier segment
+                Segment2D(
+                    Vector2(400.0, 80.0),
+                    Vector2(450.0, 180.0),
+                    Vector2(500.0, 0.0),
+                    Vector2(630.0, 80.0)
+                ) // Cubic Bézier segment
+            )
             val horizontalContour = ShapeContour.fromSegments(segments, closed = false)
-        
+    
             extend {
                 drawer.clear(ColorRGBa.WHITE)
                 drawer.strokeWeight = 5.0

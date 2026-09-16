@@ -11,10 +11,11 @@ import org.openrndr.extra.noise.filters.HashNoise
 import org.openrndr.extra.noise.filters.SimplexNoise3D
 import org.openrndr.extra.noise.filters.SpeckleNoise
 import org.openrndr.extra.noise.filters.ValueNoise
+import org.openrndr.extra.noise.primitives.random
 import org.openrndr.math.Vector2
 import org.openrndr.math.Vector3
 import org.openrndr.math.Vector4
-import kotlin.math.abs
+import kotlin.math.absoluteValue
 
 fun main() {
     application {
@@ -28,8 +29,13 @@ fun main() {
                 val t = seconds
                 for (y in 4 until height step 8) {
                     for (x in 4 until width step 8) {
-                        val g = gradient3D(noise, 100, x * 0.002, y * 0.002, t, 0.002).xy
-                        drawer.lineSegment(Vector2(x * 1.0, y * 1.0) - g * 1.0, Vector2(x * 1.0, y * 1.0) + g * 1.0)
+                        val g = gradient3D(
+                            noise, 100, x * 0.002, y * 0.002, t, 0.002
+                        ).xy
+                        drawer.lineSegment(
+                            Vector2(x * 1.0, y * 1.0) - g * 1.0,
+                            Vector2(x * 1.0, y * 1.0) + g * 1.0
+                        )
                     }
                 }
             }

@@ -38,7 +38,7 @@ fun main() {
                     // -- notice how we load the font inside the layer
                     // -- this only happens once
                     val font = loadFont("data/fonts/default.otf", 112.0)
-                
+    
                     draw {
                         drawer.fill = ColorRGBa.WHITE
                         drawer.fontMap = font
@@ -57,7 +57,7 @@ fun main() {
                     }
                 }
             }
-        
+    
             extend {
                 composite.draw(drawer)
             }

@@ -6,7 +6,9 @@ import org.openrndr.color.ColorRGBa
 import org.openrndr.color.rgb
 import org.openrndr.draw.circleBatch
 import org.openrndr.draw.rectangleBatch
-import org.openrndr.extra.noise.Random
+import org.openrndr.extra.noise.shapes.uniform
+import org.openrndr.extra.noise.uniform
+import org.openrndr.extra.noise.uniformRing
 import org.openrndr.math.Polar
 import org.openrndr.math.Vector2
 import org.openrndr.shape.Circle
@@ -20,9 +22,12 @@ fun main() {
                 drawer.fill = ColorRGBa.WHITE
                 drawer.stroke = ColorRGBa.BLACK
                 drawer.strokeWeight = 1.0
-            
+    
                 val circles = List(50000) {
-                    Circle(Math.random() * width, Math.random() * height, Math.random() * 10.0 + 10.0)
+                    Circle(
+                        drawer.bounds.uniform(),
+                        Double.uniform(10.0, 20.0)
+                    )
                 }
                 drawer.circles(circles)
             }

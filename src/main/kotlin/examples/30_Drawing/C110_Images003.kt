@@ -13,7 +13,7 @@ fun main() {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-        
+    
             extend {
                 drawer.drawStyle.colorMatrix = tint(ColorRGBa.RED)
                 drawer.image(image, 0.0, 0.0)

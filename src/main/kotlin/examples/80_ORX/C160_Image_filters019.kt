@@ -32,7 +32,7 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = Fisheye()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 filter.strength = cos(seconds) * 0.125
                 filter.scale = 1.1

@@ -17,13 +17,13 @@ import kotlin.math.cos
 fun main() {
     application {
         program {
-        
+    
             val image = loadImage("data/images/cheeta.jpg")
-        
+    
             val c = compose {
                 layer {
                     colorType = ColorType.FLOAT32
-                
+    
                     draw {
                         drawer.image(image)
                     }
@@ -34,7 +34,8 @@ fun main() {
                 }
             }
             extend {
-                c.draw(drawer)
+                // FIXME
+                //c.draw(drawer)
             }
         }
     }

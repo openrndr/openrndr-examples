@@ -20,7 +20,14 @@ fun main() {
         program {
             val c = contour {
                 moveTo(width * (1.0 / 2.0), height * (1.0 / 5.0))
-                curveTo(width * (1.0 / 4.0), height * (2.0 / 5.0), width * (3.0 / 4.0), height * (3.0 / 5.0), width * (2.0 / 4.0), height * (4.0 / 5.0))
+                curveTo(
+                    width * (1.0 / 4.0),
+                    height * (2.0 / 5.0),
+                    width * (3.0 / 4.0),
+                    height * (3.0 / 5.0),
+                    width * (2.0 / 4.0),
+                    height * (4.0 / 5.0)
+                )
             }
             extend {
                 drawer.stroke = ColorRGBa.PINK

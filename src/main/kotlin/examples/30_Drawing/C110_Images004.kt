@@ -13,7 +13,7 @@ fun main() {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-        
+    
             extend {
                 drawer.drawStyle.colorMatrix = invert
                 drawer.image(image, 0.0, 0.0)

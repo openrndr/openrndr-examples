@@ -48,7 +48,7 @@ fun main() {
                         // -- again, loading resources inside the layer is perfectly fine
                         // -- it is also a good way to keep code free of clutter
                         val image = loadImage("data/images/cheeta.jpg")
-                    
+    
                         // -- we use a normal blend here
                         blend(Normal()) {
                             // -- and we set `clip` to true

@@ -24,10 +24,10 @@ fun main() {
                 }, false)
                 drawer.shadeStyle = shadeStyle {
                     fragmentTransform = """
-                        x_stroke = texture( 
-                            p_image, vec2(c_contourPosition / p_len, 1.0 - va_texCoord0.x)
-                        );
-                    """.trimIndent()
+                    x_stroke = texture( 
+                        p_image, vec2(c_contourPosition / p_len, 1.0 - va_texCoord0.x)
+                    );
+                """.trimIndent()
                     parameter("image", image)
                     parameter("len", c.length)
                 }

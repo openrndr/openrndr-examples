@@ -13,7 +13,7 @@ fun main() {
         program {
             extend {
                 drawer.stroke = null
-            
+    
                 // -- draw hsv swatches
                 for (j in 0..7) {
                     for (i in 0..31) {
@@ -21,7 +21,7 @@ fun main() {
                         drawer.rectangle(35.0 + (700 / 32.0) * i, 32.0 + j * 16.0, (700 / 32.0), 16.0)
                     }
                 }
-            
+    
                 // -- draw hsl swatches
                 drawer.translate(0.0, 160.0)
                 for (j in 0..7) {
@@ -30,7 +30,7 @@ fun main() {
                         drawer.rectangle(35.0 + (700 / 32.0) * i, 32.0 + j * 16.0, (700 / 32.0), 16.0)
                     }
                 }
-            
+    
                 // -- draw xsv (Kuler) swatches
                 drawer.translate(0.0, 160.0)
                 for (j in 0..7) {
@@ -39,7 +39,7 @@ fun main() {
                         drawer.rectangle(35.0 + (700 / 32.0) * i, 32.0 + j * 16.0, (700 / 32.0), 16.0)
                     }
                 }
-            
+    
                 // -- draw xsl (Kuler) swatches
                 drawer.translate(0.0, 160.0)
                 for (j in 0..7) {

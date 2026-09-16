@@ -25,7 +25,7 @@ fun main() {
                 drawer.clear(ColorRGBa.PINK)
                 drawer.fontMap = font
                 drawer.fill = ColorRGBa.BLACK
-            
+    
                 writer {
                     // -- animate the text leading
                     leading = cos(seconds) * 20.0 + 24.0

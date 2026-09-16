@@ -17,8 +17,9 @@ fun main() {
                 styleSheet(has type "button") {
                     background = Color.RGBa(ColorRGBa.PINK)
                     color = Color.RGBa(ColorRGBa.BLACK)
+                    width = 120.px
                 }
-            
+    
                 layout {
                     button {
                         label = "click me"

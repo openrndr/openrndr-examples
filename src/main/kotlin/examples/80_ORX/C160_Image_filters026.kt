@@ -32,11 +32,11 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = DropShadow()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             val rt = renderTarget(width, height) {
                 colorBuffer()
             }
-        
+    
             extend {
                 drawer.isolatedWithTarget(rt) {
                     drawer.clear(ColorRGBa.TRANSPARENT)

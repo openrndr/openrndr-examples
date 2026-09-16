@@ -32,7 +32,7 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = Tiles()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 filter.rotation = seconds * 60.0
                 filter.xSegments = (10 + cos(seconds * PI / 3) * 5.0).toInt()

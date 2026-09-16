@@ -18,7 +18,7 @@ fun main() {
         program {
             val face = loadFace("data/fonts/default.otf")
             val shape = face.glyphForCharacter('8').shape(1.0)
-        
+    
             // Map each contour in the shape to a list of LineSegment,
             // then combine the resulting lists by calling `.flatten()`.
             val normals = shape.contours.map { c ->
@@ -27,17 +27,20 @@ fun main() {
                 val stepCount = (c.length / 10).toInt()
                 List(stepCount) {
                     val t = it / stepCount.toDouble()
-                    LineSegment(rc.position(t) + rc.normal(t) * 5.0, rc.position(t) + rc.normal(t) * 20.0)
+                    LineSegment(
+                        rc.position(t) + rc.normal(t) * 5.0,
+                        rc.position(t) + rc.normal(t) * 20.0
+                    )
                 }
             }.flatten()
             extend {
                 drawer.clear(ColorRGBa.WHITE)
                 drawer.translate(drawer.bounds.center - shape.bounds.center)
-            
+    
                 drawer.fill = ColorRGBa.PINK
                 drawer.stroke = null
                 drawer.shape(shape)
-            
+    
                 drawer.stroke = ColorRGBa.BLACK
                 drawer.strokeWeight = 2.0
                 drawer.lineSegments(normals)

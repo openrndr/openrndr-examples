@@ -14,17 +14,22 @@ fun main() {
     application {
         program {
             extend(ControlManager()) {
+                styleSheet(has id "b1") {
+                    width = 150.px
+                }
+    
                 layout {
                     dropdownButton {
+                        id = "b1"
                         label = "Option"
-                    
+    
                         item {
                             label = "Item 1"
                             events.picked.listen {
                                 println("you picked item 1")
                             }
                         }
-                    
+    
                         item {
                             label = "Item 2"
                             events.picked.listen {

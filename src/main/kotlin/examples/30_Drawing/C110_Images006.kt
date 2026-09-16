@@ -13,7 +13,7 @@ fun main() {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-        
+    
             extend {
                 // -- here we concatenate the transforms using the multiplication operator.
                 drawer.drawStyle.colorMatrix = tint(ColorRGBa.PINK) * grayscale()

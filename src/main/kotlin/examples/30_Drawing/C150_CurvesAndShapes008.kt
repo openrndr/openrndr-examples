@@ -20,7 +20,7 @@ fun main() {
         program {
             // -- create a contour from a Rectangle object
             val c = Rectangle(100.0, 100.0, width - 200.0, height - 200.0).contour.reversed
-        
+    
             extend {
                 drawer.fill = null
                 drawer.stroke = ColorRGBa.PINK

@@ -31,20 +31,20 @@ fun main() {
         program {
             // -- load a source image
             val image = loadImage("data/images/cheeta.jpg")
-        
+    
             // -- create a filter
             val blur = BoxBlur()
-        
+    
             // -- create a colorBuffer where to store the result
             val blurred = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 // -- configure the filter
                 blur.window = (cos(seconds * 2) * 4.0 + 5.0).toInt()
-            
+    
                 // -- filter.apply(source, target)
                 blur.apply(image, blurred)
-            
+    
                 // -- draw the result
                 drawer.image(blurred)
             }

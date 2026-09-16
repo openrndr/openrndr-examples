@@ -32,7 +32,7 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = ADither()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 filter.pattern = ((seconds / 5.0) * 4).toInt().coerceAtMost(3)
                 filter.levels = ((seconds % 1.0) * 3).toInt() + 1

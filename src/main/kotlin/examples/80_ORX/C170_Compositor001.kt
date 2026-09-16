@@ -28,7 +28,7 @@ fun main() {
                     drawer.stroke = null
                     drawer.circle(width / 2.0, height / 2.0, 175.0)
                 }
-            
+    
                 layer {
                     blend(Add()) {
                         clip = true

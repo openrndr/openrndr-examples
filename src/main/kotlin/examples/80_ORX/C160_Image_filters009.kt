@@ -32,7 +32,7 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = LumaOpacity()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 // -- a pink background to demonstrate the introduced transparencies
                 drawer.clear(ColorRGBa.PINK)
@@ -40,7 +40,7 @@ fun main() {
                 filter.foregroundOpacity = 1.0
                 filter.backgroundLuma = cos(seconds) * 0.25 + 0.25
                 filter.foregroundLuma = 1.0 - (cos(seconds) * 0.25 + 0.25)
-            
+    
                 filter.apply(image, filtered)
                 drawer.image(filtered)
             }

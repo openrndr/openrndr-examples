@@ -28,7 +28,7 @@ fun main() {
                     drawer.stroke = null
                     drawer.circle(width / 2.0, height / 2.0, 175.00)
                 }
-            
+    
                 layer {
                     draw {
                         drawer.fill = ColorRGBa.PINK
@@ -37,7 +37,7 @@ fun main() {
                     }
                 }
             }
-        
+    
             extend {
                 composite.draw(drawer)
             }

@@ -32,14 +32,14 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = HorizontalWave()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 filter.amplitude = cos(seconds) * 0.1
                 filter.frequency = sin(seconds) * 4.0
                 if (seconds > 2.5) {
                     filter.segments = 10
                 }
-            
+    
                 filter.apply(image, filtered)
                 drawer.image(filtered)
             }

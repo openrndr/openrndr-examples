@@ -22,10 +22,10 @@ fun main() {
             }
             // -- create blur filter
             val blur = BoxBlur()
-        
+    
             // -- create a colorbuffer to hold the blur results
             val blurred = colorBuffer(width, height)
-        
+    
     
             extend {
                 // -- draw to offscreen buffer
@@ -33,11 +33,15 @@ fun main() {
                     clear(ColorRGBa.BLACK)
                     fill = ColorRGBa.PINK
                     stroke = null
-                    circle(cos(seconds) * 100.0 + width / 2, sin(seconds) * 100.0 + height / 2.0, 100.0 + 100.0 * cos(seconds * 2.0))
+                    circle(
+                        cos(seconds) * 100.0 + width / 2,
+                        sin(seconds) * 100.0 + height / 2.0,
+                        100.0 + 100.0 * cos(seconds * 2.0)
+                    )
                 }
                 // -- set blur parameters
                 blur.window = 30
-            
+    
                 // -- blur offscreen's color buffer into blurred
                 blur.apply(offscreen.colorBuffer(0), blurred)
                 drawer.image(blurred)

@@ -32,12 +32,12 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = Perturb()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 filter.phase = seconds * 0.1
                 filter.decay = 0.168
                 filter.gain = cos(seconds) * 0.5 + 0.5
-            
+    
                 filter.apply(image, filtered)
                 drawer.image(filtered)
             }

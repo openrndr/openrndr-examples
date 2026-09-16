@@ -13,10 +13,11 @@ fun main() {
     application {
         program {
             val image = loadImage("data/images/cheeta.jpg")
-        
+    
             extend {
                 // -- the factors below determine the RGB mixing factors
-                drawer.drawStyle.colorMatrix = grayscale(1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0)
+                drawer.drawStyle.colorMatrix =
+                    grayscale(1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0)
                 drawer.image(image)
             }
         }

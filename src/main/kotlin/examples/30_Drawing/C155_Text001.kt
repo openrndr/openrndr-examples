@@ -25,7 +25,7 @@ fun main() {
                 drawer.clear(ColorRGBa.PINK)
                 drawer.fontMap = font
                 drawer.fill = ColorRGBa.BLACK
-            
+    
                 writer {
                     newLine()
                     text("Here is a line of text..")

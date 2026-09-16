@@ -23,14 +23,14 @@ fun main() {
             }
             val wavyContour = ShapeContour.fromPoints(points, closed = false)
             val smoothContour = hobbyCurve(points, closed = false)
-        
+    
             extend {
                 drawer.clear(ColorRGBa.WHITE)
                 drawer.fill = null
                 drawer.strokeWeight = 5.0
                 drawer.stroke = ColorRGBa.PINK
                 drawer.contour(wavyContour)
-            
+    
                 drawer.translate(0.0, 10.0) // displace 10px down
                 drawer.stroke = ColorRGBa.BLACK.opacify(0.5)
                 drawer.contour(smoothContour)

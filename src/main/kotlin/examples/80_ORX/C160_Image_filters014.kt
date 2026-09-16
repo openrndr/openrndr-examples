@@ -32,11 +32,11 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = StackRepeat()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 filter.repeats = 4
                 filter.zoom = (cos(seconds) * 0.1 + 0.11)
-            
+    
                 filter.apply(image, filtered)
                 drawer.image(filtered)
             }

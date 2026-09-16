@@ -15,7 +15,7 @@ fun main() {
             extend {
                 drawer.fill = ColorRGBa.PINK
                 drawer.stroke = null
-            
+    
                 // -- translate
                 drawer.translate(width / 2.0, height / 2.0)
                 // -- rotate

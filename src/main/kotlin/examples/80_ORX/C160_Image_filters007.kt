@@ -32,7 +32,7 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = ColorCorrection()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 filter.hueShift = cos(seconds * 1) * 180.0
                 filter.saturation = cos(seconds * 2)

@@ -15,7 +15,7 @@ fun main() {
             extend {
                 drawer.fill = ColorRGBa.PINK
                 drawer.stroke = null
-            
+    
                 // -- translate to the screen center
                 drawer.translate(width / 2.0, height / 2.0)
                 // -- scale around origin

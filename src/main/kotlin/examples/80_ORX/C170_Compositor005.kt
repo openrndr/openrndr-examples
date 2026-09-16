@@ -30,7 +30,7 @@ fun main() {
                         drawer.image(image)
                     }
                 }
-            
+    
                 // -- add a second layer with text and a drop shadow
                 layer {
                     // -- notice how we load the font inside the layer

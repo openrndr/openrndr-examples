@@ -18,8 +18,12 @@ fun main() {
                 drawer.stroke = ColorRGBa.BLACK
                 drawer.strokeWeight = 5.0
                 drawer.lineCap = LineCap.ROUND
-            
-                val points = listOf(Vector2(10.0, height - 10.0), Vector2(width / 2.0, 10.0), Vector2(width - 10.0, height - 10.0))
+    
+                val points = listOf(
+                    Vector2(10.0, height - 10.0),
+                    Vector2(width / 2.0, 10.0),
+                    Vector2(width - 10.0, height - 10.0)
+                )
                 drawer.lineStrip(points)
             }
         }

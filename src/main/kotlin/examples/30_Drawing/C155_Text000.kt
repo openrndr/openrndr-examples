@@ -21,7 +21,11 @@ fun main() {
                 drawer.clear(ColorRGBa.PINK)
                 drawer.fontMap = font
                 drawer.fill = ColorRGBa.BLACK
-                drawer.text("HELLO WORLD", width / 2.0 - 100.0, height / 2.0)
+                drawer.text(
+                    "HELLO WORLD",
+                    width / 2.0 - 100.0,
+                    height / 2.0
+                )
             }
         }
     }

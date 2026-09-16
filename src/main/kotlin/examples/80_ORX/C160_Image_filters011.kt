@@ -32,7 +32,7 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = Contour()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 filter.backgroundOpacity = 1.0
                 filter.contourColor = ColorRGBa.BLACK

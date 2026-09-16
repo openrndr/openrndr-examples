@@ -32,7 +32,7 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = Crosshatch()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 // -- need a white background because the filter introduces transparent areas
                 drawer.clear(ColorRGBa.WHITE)
@@ -40,9 +40,9 @@ fun main() {
                 filter.t2 = filter.t1 + cos(seconds * 3) * 0.25 + 0.25
                 filter.t3 = filter.t2 + cos(seconds * 2) * 0.25 + 0.25
                 filter.t4 = filter.t3 + cos(seconds * 1) * 0.25 + 0.25
-            
+    
                 filter.apply(image, filtered)
-            
+    
                 drawer.image(filtered)
             }
         }

@@ -14,7 +14,7 @@ fun main() {
         configure {}
         program {
             val image = loadImage("data/images/cheeta.jpg")
-        
+    
             extend {
                 drawer.image(image)
             }

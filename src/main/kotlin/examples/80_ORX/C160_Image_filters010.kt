@@ -32,9 +32,11 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = LumaSobel()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
-                filter.backgroundColor = ColorRGBa.PINK.toHSVa().shiftHue(cos(seconds) * 180).toRGBa().shade(0.25)
+                filter.backgroundColor = ColorRGBa.PINK.toHSVa()
+                    .shiftHue(cos(seconds) * 180).toRGBa()
+                    .shade(0.25)
                 filter.edgeColor = ColorRGBa.PINK
                 filter.apply(image, filtered)
                 drawer.image(filtered)

@@ -16,25 +16,25 @@ fun main() {
                 var y = 0.0
                 var radius = 100.0
                 var latch = 0.0
-            
+    
                 fun shrink() {
                     // -- first stop any running animations for the radius property
                     ::radius.cancel()
                     ::radius.animate(10.0, 200, Easing.CubicInOut)
                 }
-            
+    
                 fun grow() {
                     ::radius.cancel()
                     ::radius.animate(Double.uniform(60.0, 90.0), 200, Easing.CubicInOut)
                 }
-            
+    
                 fun jump() {
                     ::x.cancel()
                     ::y.cancel()
                     ::x.animate(Double.uniform(0.0, width.toDouble()), 400, Easing.CubicInOut)
                     ::y.animate(Double.uniform(0.0, height.toDouble()), 400, Easing.CubicInOut)
                 }
-            
+    
                 fun update() {
                     updateAnimation()
                     if (!::latch.hasAnimations) {
@@ -46,10 +46,8 @@ fun main() {
                     }
                 }
             }
-        
-            val animatedCircles = List(5) {
-                AnimatedCircle()
-            }
+    
+            val animatedCircles = List(5) { AnimatedCircle() }
             extend {
                 drawer.fill = ColorRGBa.PINK
                 drawer.stroke = null

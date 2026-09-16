@@ -25,13 +25,27 @@ fun main() {
                 drawer.clear(ColorRGBa.PINK)
                 drawer.fontMap = font
                 drawer.fill = ColorRGBa.BLACK
-            
+    
                 writer {
-                    box = Rectangle(40.0, 40.0, 300.0, 300.0)
-                    newLine()
-                    text("Here is a line of text..")
-                    newLine()
-                    text("Here is another line of text..")
+                    box = drawer.bounds.offsetEdges(-40.0)
+                    text(
+                        listOf(
+                            "Here is a line of text..",
+                            "Here is another line of text.."
+                        )
+                    )
+                }
+    
+                writer {
+                    box = drawer.bounds.offsetEdges(-40.0)
+                    horizontalAlign = 1.0
+                    verticalAlign = 1.0
+                    text(
+                        listOf(
+                            "Here is a line of text..",
+                            "Here is another line of text.."
+                        )
+                    )
                 }
             }
         }

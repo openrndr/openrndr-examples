@@ -11,10 +11,11 @@ import org.openrndr.extra.noise.filters.HashNoise
 import org.openrndr.extra.noise.filters.SimplexNoise3D
 import org.openrndr.extra.noise.filters.SpeckleNoise
 import org.openrndr.extra.noise.filters.ValueNoise
+import org.openrndr.extra.noise.primitives.random
 import org.openrndr.math.Vector2
 import org.openrndr.math.Vector3
 import org.openrndr.math.Vector4
-import kotlin.math.abs
+import kotlin.math.absoluteValue
 
 fun main() {
     application {
@@ -25,7 +26,8 @@ fun main() {
                 val scale = 0.004
                 for (y in 16 until height step 32) {
                     for (x in 16 until width step 32) {
-                        val radius = simplex(100, x * scale, y * scale) * 16.0 + 16.0
+                        val radius =
+                            simplex(123, x * scale, y * scale) * 16.0 + 16.0
                         drawer.circle(x * 1.0, y * 1.0, radius)
                     }
                 }

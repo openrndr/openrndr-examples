@@ -29,7 +29,8 @@ fun main() {
                 }
             }
             extend {
-                c.draw(drawer)
+                // FIXME
+                //c.draw(drawer)
             }
         }
     }

@@ -9,7 +9,6 @@ import org.openrndr.extra.shadestyles.angularGradient
 import org.openrndr.extra.shadestyles.halfAngularGradient
 import org.openrndr.extra.shadestyles.linearGradient
 import org.openrndr.extra.shadestyles.radialGradient
-
 import org.openrndr.math.Vector2
 import kotlin.math.cos
 import kotlin.math.sin

@@ -6,7 +6,6 @@ import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.loadImage
 import org.openrndr.extra.imageFit.FitMethod
 import org.openrndr.extra.imageFit.imageFit
-
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -17,7 +16,7 @@ fun main() {
             extend {
                 val margin = 100.0
                 drawer.imageFit(image, 20.0, 20.0 + margin / 2, width - 40.0, height - 40.0 - margin, verticalPosition = cos(seconds) * 1.0)
-            
+    
                 // -- illustrate the placement rectangle
                 drawer.fill = null
                 drawer.stroke = ColorRGBa.WHITE

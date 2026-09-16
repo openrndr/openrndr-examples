@@ -6,7 +6,9 @@ import org.openrndr.color.ColorRGBa
 import org.openrndr.color.rgb
 import org.openrndr.draw.circleBatch
 import org.openrndr.draw.rectangleBatch
-import org.openrndr.extra.noise.Random
+import org.openrndr.extra.noise.shapes.uniform
+import org.openrndr.extra.noise.uniform
+import org.openrndr.extra.noise.uniformRing
 import org.openrndr.math.Polar
 import org.openrndr.math.Vector2
 import org.openrndr.shape.Circle
@@ -20,7 +22,10 @@ fun main() {
                 drawer.points {
                     repeat(20000) {
                         fill = rgb((it * 0.01 - seconds) % 1)
-                        point((it * it * 0.011) % width, (it * 4.011) % height)
+                        point(
+                            (it * it * 0.011) % width,
+                            (it * 4.011) % height
+                        )
                     }
                 }
             }

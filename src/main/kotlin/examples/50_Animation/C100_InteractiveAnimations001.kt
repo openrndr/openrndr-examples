@@ -15,13 +15,13 @@ fun main() {
                 var x = 0.0
                 var y = 0.0
             }
-        
+    
             animation.apply {
                 ::x.animate(width.toDouble(), 5000)
                 ::x.complete()
                 ::y.animate(height.toDouble(), 5000)
             }
-        
+    
             extend {
                 animation.updateAnimation()
                 drawer.fill = ColorRGBa.PINK

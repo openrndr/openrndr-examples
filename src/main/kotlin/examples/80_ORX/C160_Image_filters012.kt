@@ -32,7 +32,7 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val filter = EdgesWork()
             val filtered = colorBuffer(image.width, image.height)
-        
+    
             extend {
                 filter.radius = (cos(seconds) * 5 + 5).toInt()
                 filter.apply(image, filtered)

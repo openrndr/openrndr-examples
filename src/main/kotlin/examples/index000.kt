@@ -12,7 +12,10 @@ fun main() {
             extend {
                 drawer.clear(ColorRGBa.PINK)
                 drawer.fill = ColorRGBa.WHITE
-                drawer.circle(drawer.bounds.center, abs(cos(seconds)) * height * 0.51)
+                drawer.circle(
+                    drawer.bounds.center,
+                    abs(cos(seconds)) * height * 0.51
+                )
             }
         }
     }

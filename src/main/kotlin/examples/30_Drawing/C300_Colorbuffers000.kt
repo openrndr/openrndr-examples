@@ -9,7 +9,7 @@ import org.openrndr.draw.ColorType
 import org.openrndr.draw.colorBuffer
 import org.openrndr.draw.loadImage
 import org.openrndr.drawImage
-import org.openrndr.extra.shadestyles.RadialGradient
+import org.openrndr.extra.shadestyles.fills.gradients.gradient
 import org.openrndr.shape.Rectangle
 import java.io.File
 import java.nio.ByteBuffer
@@ -20,7 +20,11 @@ fun main() {
         program {
             val gradientBackground = drawImage(width, height) {
                 // Draw anything here, for example, a radial gradient.
-                drawer.shadeStyle = RadialGradient(ColorRGBa.WHITE, ColorRGBa.PINK)
+                drawer.shadeStyle = gradient<ColorRGBa> {
+                    stops[0.0] = ColorRGBa.WHITE
+                    stops[1.0] = ColorRGBa.PINK
+                    radial { }
+                }
                 val r = Rectangle.fromCenter(drawer.bounds.center, 800.0, 800.0)
                 drawer.rectangle(r)
             }

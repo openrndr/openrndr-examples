@@ -18,7 +18,7 @@ fun main() {
             val geometry = vertexBuffer(vertexFormat {
                 position(3)
             }, 4)
-        
+    
             // -- fill the vertex buffer with vertices for a unit quad
             geometry.put {
                 write(Vector3(-1.0, -1.0, 0.0))
@@ -26,20 +26,20 @@ fun main() {
                 write(Vector3(1.0, -1.0, 0.0))
                 write(Vector3(1.0, 1.0, 0.0))
             }
-        
+    
             // -- create the secondary vertex buffer, which will hold transformations
             val transforms = vertexBuffer(vertexFormat {
                 attribute("transform", VertexElementType.MATRIX44_FLOAT32)
             }, 1000)
-        
+    
             // -- fill the transform buffer
             transforms.put {
                 repeat(transforms.vertexCount) {
-                    write(transform {
+                    write( transform {
                         translate(Math.random() * width, Math.random() * height)
-                        rotate(Vector3.UNIT_Z, Math.random() * 360.0)
-                        scale(Math.random() * 30.0)
-                    })
+                        rotate(Vector3.UNIT_Z,Math.random() * 360.0)
+                        scale(Math.random()*30.0)
+                    } )
                 }
             }
             extend {

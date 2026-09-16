@@ -17,13 +17,13 @@ fun main() {
                 // -- setup line appearance
                 drawer.stroke = ColorRGBa.BLACK
                 drawer.strokeWeight = 5.0
+    
                 drawer.lineCap = LineCap.ROUND
-            
                 drawer.lineSegment(10.0, height / 2.0 - 20.0, width - 10.0, height / 2.0 - 20.0)
-            
+    
                 drawer.lineCap = LineCap.BUTT
                 drawer.lineSegment(10.0, height / 2.0, width - 10.0, height / 2.0)
-            
+    
                 drawer.lineCap = LineCap.SQUARE
                 drawer.lineSegment(10.0, height / 2.0 + 20.0, width - 10.0, height / 2.0 + 20.0)
             }

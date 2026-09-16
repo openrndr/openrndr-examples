@@ -15,7 +15,6 @@ fun main() {
         program {
             extend(ControlManager()) {
                 layout {
-            
                     colorpickerButton {
                         label = "Pick a color"
                         color = ColorRGBa.PINK

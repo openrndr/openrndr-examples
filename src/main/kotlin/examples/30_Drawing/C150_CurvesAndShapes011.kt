@@ -22,7 +22,7 @@ fun main() {
                 drawer.clear(ColorRGBa.WHITE)
                 drawer.fill = ColorRGBa.PINK
                 drawer.stroke = ColorRGBa.PINK.shade(0.7)
-            
+    
                 // -- shape union
                 val su = compound {
                     union {
@@ -31,7 +31,7 @@ fun main() {
                     }
                 }
                 drawer.shapes(su)
-            
+    
                 // -- shape difference
                 val sd = compound {
                     difference {
@@ -40,7 +40,7 @@ fun main() {
                     }
                 }
                 drawer.shapes(sd)
-            
+    
                 // -- shape intersection
                 val si = compound {
                     intersection {

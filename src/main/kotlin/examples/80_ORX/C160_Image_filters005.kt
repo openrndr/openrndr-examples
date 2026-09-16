@@ -32,9 +32,12 @@ fun main() {
             val image = loadImage("data/images/cheeta.jpg")
             val blurred = colorBuffer(image.width, image.height)
             val blur = ZoomBlur()
-        
+    
             extend {
-                blur.center = Vector2(cos(seconds) * 0.5 + 0.5, sin(seconds * 2) * 0.5 + 0.5)
+                blur.center = Vector2(
+                    cos(seconds) * 0.5 + 0.5,
+                    sin(seconds * 2) * 0.5 + 0.5
+                )
                 blur.strength = cos(seconds * 2) * 0.5 + 0.5
                 blur.apply(image, blurred)
                 drawer.image(blurred)

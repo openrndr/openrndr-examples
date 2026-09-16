@@ -11,10 +11,11 @@ import org.openrndr.extra.noise.filters.HashNoise
 import org.openrndr.extra.noise.filters.SimplexNoise3D
 import org.openrndr.extra.noise.filters.SpeckleNoise
 import org.openrndr.extra.noise.filters.ValueNoise
+import org.openrndr.extra.noise.primitives.random
 import org.openrndr.math.Vector2
 import org.openrndr.math.Vector3
 import org.openrndr.math.Vector4
-import kotlin.math.abs
+import kotlin.math.absoluteValue
 
 fun main() {
     application {
@@ -27,9 +28,9 @@ fun main() {
                 for (y in 4 until height step 8) {
                     for (x in 4 until width step 8) {
                         val radius = when {
-                            t < 3.0 -> abs(fbm(100, x * s, y * s, t, ::perlinLinear)) * 16.0
-                            t < 6.0 -> billow(100, x * s, y * s, t, ::perlinLinear) * 2.0
-                            else -> rigid(100, x * s, y * s, t, ::perlinLinear) * 16.0
+                            t < 3.0 -> fbm(135, x * s, y * s, t, ::perlinLinear).absoluteValue * 16.0
+                            t < 6.0 -> billow(471, x * s, y * s, t, ::perlinLinear) * 2.0
+                            else -> rigid(193, x * s, y * s, t, ::perlinLinear) * 16.0
                         }
                         drawer.circle(x * 1.0, y * 1.0, radius)
                     }

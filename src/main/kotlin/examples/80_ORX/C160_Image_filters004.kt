@@ -35,13 +35,13 @@ fun main() {
             val rt = renderTarget(width, height) {
                 colorBuffer()
             }
-        
+    
             extend {
                 drawer.isolatedWithTarget(rt) {
                     drawer.clear(ColorRGBa.BLACK)
                     drawer.image(image, cos(seconds * 2) * 40.0, sin(seconds * 2) * 40.0)
                 }
-            
+    
                 blur.blend = 0.01
                 blur.apply(rt.colorBuffer(0), blurred)
                 drawer.image(blurred)

@@ -19,9 +19,9 @@ fun main() {
             extend {
                 drawer.shadeStyle = shadeStyle {
                     fragmentTransform = """
-                        | float c = cos(c_screenPosition.x * 0.1) * 0.5 + 0.5;
-                        | x_fill.rgb *= vec3(c, c, c);
-                        """.trimMargin()
+                    | float c = cos(c_screenPosition.x * 0.1) * 0.5 + 0.5;
+                    | x_fill.rgb *= vec3(c, c, c);
+                    """.trimMargin()
                 }
                 drawer.fill = ColorRGBa.PINK
                 drawer.stroke = null

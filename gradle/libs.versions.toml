@@ -1,21 +1,24 @@
 [versions]
-kotlin = "2.2.10"
-openrndr = "0.4.5"
-orx = "0.4.5"
-orsl = "0.4.5-alpha5"
-orml = "0.4.1"
-slf4j = "2.0.17"
+jvmTarget = "17"
+kotlin = "2.4.20"
+kotlinApi = "2.4"
+kotlinLanguage = "2.4"
+
+openrndr = "0.5.0"
+orx = "0.5.0"
+
+slf4j = "2.0.19"
 log4j = "2.23.1"
 jackson = "2.17.2"
 junit = "4.13.2"
-kotlinxCoroutines = "1.10.2"
-kotlinxSerialization = "1.9.0"
-kotlinLogging = "7.0.13"
+kotlinxCoroutines = "1.11.0"
+kotlinxSerialization = "1.11.0"
+kotlinLogging = "8.0.4"
 kotlinCsvJvm = "1.9.3"
-jsoup = "1.17.1"
-shadow = "9.1.0"
-runtime = "1.13.1"
-versions = "0.52.0"
+jsoup = "1.23.2"
+shadow = "9.4.0"
+runtime = "2.0.1"
+versions = "0.63.1"
 
 [libraries]
 kotlin-script-runtime = { group = "org.jetbrains.kotlin", name = "kotlin-script-runtime", version.ref = "kotlin" }
@@ -28,15 +31,10 @@ log4j-core = { group = "org.apache.logging.log4j", name = "log4j-core", version.
 jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
 jackson-json = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-yaml", version.ref = "jackson" }
 
-orsl-shader-generator = { group = "org.openrndr.extra", name = "orsl-shader-generator", version.ref = "orsl" }
-orsl-extension-color = { group = "org.openrndr.extra", name = "orsl-extension-color", version.ref = "orsl" }
-orsl-extension-easing = { group = "org.openrndr.extra", name = "orsl-extension-easing", version.ref = "orsl" }
-orsl-extension-gradient = { group = "org.openrndr.extra", name = "orsl-extension-gradient", version.ref = "orsl" }
-orsl-extension-noise = { group = "org.openrndr.extra", name = "orsl-extension-noise", version.ref = "orsl" }
-orsl-extension-pbr = { group = "org.openrndr.extra", name = "orsl-extension-pbr", version.ref = "orsl" }
-orsl-extension-raymarching = { group = "org.openrndr.extra", name = "orsl-extension-raymarching", version.ref = "orsl" }
-orsl-extension-sdf = { group = "org.openrndr.extra", name = "orsl-extension-sdf", version.ref = "orsl" }
-
+shadow-gradle-plugin = { group = "com.gradleup.shadow", name = "com.gradleup.shadow.gradle.plugin", version.ref = "shadow" }
+runtime-gradle-plugin = { group = "org.beryx.runtime", name = "org.beryx.runtime.gradle.plugin", version.ref = "runtime" }
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin.jvm", name = "org.jetbrains.kotlin.jvm.gradle.plugin", version.ref = "kotlin" }
+xversions-gradle-plugin = { group = "com.github.ben-manes.versions", name = "com.github.ben-manes.versions.gradle.plugin", version.ref = "versions" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
@@ -52,3 +50,8 @@ shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 runtime = { id = "org.beryx.runtime", version.ref = "runtime" }
 gitarchive-tomarkdown = { id = "org.openrndr.extra.gitarchiver.tomarkdown", version.ref = "orx" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
+
+[bundles]
+logging-none = ["slf4j-nop"]
+logging-simple = ["slf4j-simple"]
+logging-full = ["log4j-slf4j2", "log4j-core", "jackson-databind", "jackson-json"]

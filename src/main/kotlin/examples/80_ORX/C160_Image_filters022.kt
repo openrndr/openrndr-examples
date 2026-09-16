@@ -33,7 +33,7 @@ fun main() {
                 layer {
                     post(Checkers())
                 }
-            
+    
                 layer {
                     val image = loadImage("data/images/cheeta.jpg")
                     draw {
