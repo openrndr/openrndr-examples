@@ -28,7 +28,7 @@ dependencies {
     implementation(orx.poisson.fill)
     implementation(orx.view.box)
     implementation(orx.axidraw)
-    implementation(orx.g-code)
+    implementation(orx.gcode)
 
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.serialization.core)

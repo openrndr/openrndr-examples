@@ -10,7 +10,7 @@ val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 plugins {
     java
     kotlin("jvm")
-    id("com.github.ben-manes.versions")
+    id("io.github.ben-manes.versions")
 }
 val allowSonatypeSnapshots = providers.gradleProperty("openrndr.allowSonatypeSnapshots")
 val allowLocalSnapshots = providers.gradleProperty("openrndr.allowLocalSnapshots")
