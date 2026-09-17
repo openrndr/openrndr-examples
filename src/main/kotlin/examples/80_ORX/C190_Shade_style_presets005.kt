@@ -19,26 +19,18 @@ import kotlin.math.sin
 fun main() {
     application {
         program {
-            val image = loadImage("data/images/cheeta.jpg")
-            val font = loadFont("data/fonts/default.otf", 144.0)
             extend {
-                run {
+                drawer.clear(ColorRGBa.PINK)
+                repeat(3) {
+                    val e = it * 0.02
                     drawer.shadeStyle = gradient<ColorRGBa> {
-                        stops[0.0] = ColorRGBa.PINK
-                        stops[1.0] = ColorRGBa.RED
-                        spreadMethod = SpreadMethod.REFLECT
-                        conic {
-                            angle = 360.0 * 2
-                            rotation = seconds * 60.0
-                        }
+                        stops[0.0] = ColorRGBa.WHITE
+                        stops[1.0] = ColorRGBa.BLACK
+                        domainWarpFunction = "vec2 domainWarp(vec2 p) { return p + sin(p * 50.0) * $e; }"
+                        radial { }
                     }
+                    drawer.rectangle(50.0, 50.0 + it * 130.0, width - 100.0, 110.0)
                 }
-                drawer.rectangle(80.0, 40.0, 200.0, 200.0)
-                drawer.circle(180.0, 340.0, 90.0)
-                drawer.image(image, 300.0, 40.0, 640 * (200 / 480.0), 200.0)
-                drawer.fontMap = font
-                drawer.text("OPEN", 300.0, 340.0)
-                drawer.text("RNDR", 300.0, 420.0)
             }
         }
     }
