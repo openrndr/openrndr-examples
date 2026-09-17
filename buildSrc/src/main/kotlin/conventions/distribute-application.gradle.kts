@@ -1,4 +1,5 @@
 package conventions
+
 import org.gradle.internal.os.OperatingSystem
 import kotlin.collections.set
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
@@ -8,7 +9,7 @@ plugins {
     id("org.beryx.runtime")
 }
 
-val applicationMainClass: String by properties
+val applicationMainClass = providers.gradleProperty("applicationMainClass").get()
 
 application {
     mainClass = if (hasProperty("openrndr.application"))
@@ -63,6 +64,13 @@ tasks {
             }
         }
         dependsOn("jpackage")
+    }
+}
+
+// Workaround until jpackage is configuration-cache compatible
+listOf("jre", "jpackageZip", "jpackageImage", "jpackage").forEach {
+    tasks.named(it).configure {
+        notCompatibleWithConfigurationCache("org.beryx.runtime plugin is not configuration-cache compatible")
     }
 }
 

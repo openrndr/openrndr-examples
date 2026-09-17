@@ -18,7 +18,7 @@ kotlinCsvJvm = "1.9.3"
 jsoup = "1.23.2"
 shadow = "9.4.0"
 runtime = "2.0.1"
-versions = "0.63.1"
+versions = "0.64.0"
 
 [libraries]
 kotlin-script-runtime = { group = "org.jetbrains.kotlin", name = "kotlin-script-runtime", version.ref = "kotlin" }
