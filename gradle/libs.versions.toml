@@ -1,6 +1,6 @@
 [versions]
 jvmTarget = "17"
-kotlin = "2.4.20"
+kotlin = "2.4.21"
 kotlinApi = "2.4"
 kotlinLanguage = "2.4"
 
@@ -12,13 +12,13 @@ log4j = "2.23.1"
 jackson = "2.17.2"
 junit = "4.13.2"
 kotlinxCoroutines = "1.11.0"
-kotlinxSerialization = "1.11.0"
+kotlinxSerialization = "1.12.0"
 kotlinLogging = "8.0.4"
 kotlinCsvJvm = "1.9.3"
 jsoup = "1.23.2"
 shadow = "9.4.0"
 runtime = "2.0.1"
-versions = "0.64.0"
+versions = "0.66.0"
 
 [libraries]
 kotlin-script-runtime = { group = "org.jetbrains.kotlin", name = "kotlin-script-runtime", version.ref = "kotlin" }
