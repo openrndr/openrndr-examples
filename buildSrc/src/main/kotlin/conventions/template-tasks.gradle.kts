@@ -102,19 +102,19 @@ tasks.register("openrndrSonatypeSnapshot") {
 
     doLast {
         val snapshotVersion = getLatestVersion()
-        setVersion(snapshotVersion)
+        setVersion("$snapshotVersion-SNAPSHOT")
         setGradleProperties(true, false)
     }
 }
 
 tasks.register("openrndrRelease") {
     group = "openrndr template"
-    description = "Switch to OPENRNDR and ORX Sonatype snapshot versions"
+    description = "Switch to OPENRNDR and ORX release versions"
 
     doLast {
         val releaseVersion = getLatestVersion(
-            Regex("""refs/tags/v(\d+\.\d+\.\d+)"""),
-            Regex("""(\d+\.\d+\.\d+)""")
+            Regex("""refs/tags/v(\d+\.\d+\.\d+)$"""),
+            Regex("""(\d+\.\d+\.\d+)$""")
         )
         setVersion(releaseVersion)
         setGradleProperties(false, false)
@@ -123,12 +123,11 @@ tasks.register("openrndrRelease") {
 
 tasks.register("openrndrLocalSnapshot") {
     group = "openrndr template"
-    description = "Switch to OPENRNDR and ORX Sonatype snapshot versions"
+    description = "Switch to OPENRNDR and ORX local snapshot versions"
 
     doLast {
         val snapshotVersion = getLatestVersion()
-
-        setVersion(snapshotVersion)
+        setVersion("$snapshotVersion-SNAPSHOT")
         setGradleProperties(false, true)
     }
 }
